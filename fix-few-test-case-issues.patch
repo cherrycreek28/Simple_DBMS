@@ -1,0 +1,60 @@
+From 1cdc08dc0e5ef7b26b494048cd6f5de4e323ad02 Mon Sep 17 00:00:00 2001
+From: Yicong Huang <hyc541978023@gmail.com>
+Date: Thu, 19 Nov 2020 20:10:45 -0800
+Subject: [PATCH 1/1] fix few testcase issues
+
+---
+ test/ix/ixtest_public.cc        | 9 +++++----
+ test/utils/general_test_utils.h | 2 +-
+ 2 files changed, 6 insertions(+), 5 deletions(-)
+
+diff --git a/test/ix/ixtest_public.cc b/test/ix/ixtest_public.cc
+index 60179b0..9818923 100644
+--- a/test/ix/ixtest_public.cc
++++ b/test/ix/ixtest_public.cc
+@@ -128,7 +128,8 @@ namespace PeterDBTesting {
+                                     << "indexManager::collectCounterValues() should succeed.";
+ 
+         // check counters
+-        EXPECT_EQ(rcAfter - rc, 2); // one for tree root pointer, one for the first tree node
++        EXPECT_IN_RANGE(rcAfter - rc, 2, 4);// at least two reads:
++        // one for tree root pointer, one for the first tree node
+         EXPECT_IN_RANGE(wcAfter - wc, 0, 1); // persist counters
+         EXPECT_EQ(acAfter - ac, 0); // no page appended during iteration.
+ 
+@@ -605,7 +606,7 @@ namespace PeterDBTesting {
+             ASSERT_EQ(ix.insertEntry(ixFileHandle, empNameAttr, &key, rid), success)
+                                         << "indexManager::insertEntry() should succeed.";
+ 
+-            if (i % 100 == testedAscii) {
++            if (i == testedAscii) {
+                 rids.emplace_back(rid);
+             }
+         }
+@@ -626,8 +627,8 @@ namespace PeterDBTesting {
+         ASSERT_EQ(ix.printBTree(ixFileHandle, empNameAttr, stream), success)
+                                     << "indexManager::printBTree() should succeed.";
+ 
+-        // we give D a very large
+-        // (1+n)n/2 <= PAGE_SIZE, thus n >= 2^6.5 =90.5, we would put very loose D as around 45.
++        // we give a very loose D
++        // (1+n)n/2 <= PAGE_SIZE, thus n >= 2^6.5 = 90.5, we would put very loose D as around 45.
+         validateTree(stream, numOfEntries, numOfEntries + numOfMoreEntries, 2,
+                      45, true);
+ 
+diff --git a/test/utils/general_test_utils.h b/test/utils/general_test_utils.h
+index 47a331c..446f590 100644
+--- a/test/utils/general_test_utils.h
++++ b/test/utils/general_test_utils.h
+@@ -205,7 +205,7 @@ namespace PeterDBTesting {
+         std::vector<std::string> result;
+         while (!str.empty()) {
+             int index = str.find(token);
+-            if (index != string::npos) {
++            if (index != std::string::npos) {
+                 result.push_back(str.substr(0, index));
+                 str = str.substr(index + token.size());
+                 if (str.empty())result.emplace_back(str);
+-- 
+2.28.0
+

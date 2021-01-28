@@ -1,0 +1,389 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_60ff1/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_60ff1.dir/build.make CMakeFiles/cmTC_60ff1.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_60ff1.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_60ff1.dir/src.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_60ff1
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_60ff1.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_60ff1.dir/src.c.o  -o cmTC_60ff1 
+CMakeFiles/cmTC_60ff1.dir/src.c.o: In function `main':
+src.c:(.text+0x3e): undefined reference to `pthread_create'
+src.c:(.text+0x4a): undefined reference to `pthread_detach'
+src.c:(.text+0x5b): undefined reference to `pthread_join'
+src.c:(.text+0x6f): undefined reference to `pthread_atfork'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_60ff1.dir/build.make:86: recipe for target 'cmTC_60ff1' failed
+make[4]: *** [cmTC_60ff1] Error 1
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_60ff1/fast' failed
+make[3]: *** [cmTC_60ff1/fast] Error 2
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_63b32/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_63b32.dir/build.make CMakeFiles/cmTC_63b32.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_63b32.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_63b32.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.15/Modules/CheckFunctionExists.c
+Linking C executable cmTC_63b32
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_63b32.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_63b32.dir/CheckFunctionExists.c.o  -o cmTC_63b32 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_63b32.dir/build.make:86: recipe for target 'cmTC_63b32' failed
+make[4]: *** [cmTC_63b32] Error 1
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_63b32/fast' failed
+make[3]: *** [cmTC_63b32/fast] Error 2
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining size of unsigned __int16 failed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_82426/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_82426.dir/build.make CMakeFiles/cmTC_82426.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_82426.dir/HAVE___UINT16.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_82426.dir/HAVE___UINT16.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CheckTypeSize/HAVE___UINT16.c
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CheckTypeSize/HAVE___UINT16.c:23:31: error: expected ‘)’ before ‘__int16’
+ #define SIZE (sizeof(unsigned __int16))
+                               ^
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CheckTypeSize/HAVE___UINT16.c:25:12: note: in expansion of macro ‘SIZE’
+   ('0' + ((SIZE / 10000)%10)),
+            ^~~~
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CheckTypeSize/HAVE___UINT16.c:23:31: error: expected ‘)’ before ‘__int16’
+ #define SIZE (sizeof(unsigned __int16))
+                               ^
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CheckTypeSize/HAVE___UINT16.c:26:12: note: in expansion of macro ‘SIZE’
+   ('0' + ((SIZE / 1000)%10)),
+            ^~~~
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CheckTypeSize/HAVE___UINT16.c:23:31: error: expected ‘)’ before ‘__int16’
+ #define SIZE (sizeof(unsigned __int16))
+                               ^
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CheckTypeSize/HAVE___UINT16.c:27:12: note: in expansion of macro ‘SIZE’
+   ('0' + ((SIZE / 100)%10)),
+            ^~~~
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CheckTypeSize/HAVE___UINT16.c:23:31: error: expected ‘)’ before ‘__int16’
+ #define SIZE (sizeof(unsigned __int16))
+                               ^
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CheckTypeSize/HAVE___UINT16.c:28:12: note: in expansion of macro ‘SIZE’
+   ('0' + ((SIZE / 10)%10)),
+            ^~~~
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CheckTypeSize/HAVE___UINT16.c:23:31: error: expected ‘)’ before ‘__int16’
+ #define SIZE (sizeof(unsigned __int16))
+                               ^
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CheckTypeSize/HAVE___UINT16.c:29:12: note: in expansion of macro ‘SIZE’
+   ('0' +  (SIZE    % 10)),
+            ^~~~
+CMakeFiles/cmTC_82426.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_82426.dir/HAVE___UINT16.c.o' failed
+make[4]: *** [CMakeFiles/cmTC_82426.dir/HAVE___UINT16.c.o] Error 1
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_82426/fast' failed
+make[3]: *** [cmTC_82426/fast] Error 2
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CheckTypeSize/HAVE___UINT16.c:
+#include <sys/types.h>
+#include <stdint.h>
+#include <stddef.h>
+
+
+#undef KEY
+#if defined(__i386)
+# define KEY '_','_','i','3','8','6'
+#elif defined(__x86_64)
+# define KEY '_','_','x','8','6','_','6','4'
+#elif defined(__ppc__)
+# define KEY '_','_','p','p','c','_','_'
+#elif defined(__ppc64__)
+# define KEY '_','_','p','p','c','6','4','_','_'
+#elif defined(__aarch64__)
+# define KEY '_','_','a','a','r','c','h','6','4','_','_'
+#elif defined(__ARM_ARCH_7A__)
+# define KEY '_','_','A','R','M','_','A','R','C','H','_','7','A','_','_'
+#elif defined(__ARM_ARCH_7S__)
+# define KEY '_','_','A','R','M','_','A','R','C','H','_','7','S','_','_'
+#endif
+
+#define SIZE (sizeof(unsigned __int16))
+static char info_size[] =  {'I', 'N', 'F', 'O', ':', 's','i','z','e','[',
+  ('0' + ((SIZE / 10000)%10)),
+  ('0' + ((SIZE / 1000)%10)),
+  ('0' + ((SIZE / 100)%10)),
+  ('0' + ((SIZE / 10)%10)),
+  ('0' +  (SIZE    % 10)),
+  ']',
+#ifdef KEY
+  ' ','k','e','y','[', KEY, ']',
+#endif
+  '\0'};
+
+#ifdef __CLASSIC_C__
+int main(argc, argv) int argc; char *argv[];
+#else
+int main(int argc, char *argv[])
+#endif
+{
+  int require = 0;
+  require += info_size[argc];
+  (void)argv;
+  return require;
+}
+
+
+Determining if the function dladdr exists failed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_c8711/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_c8711.dir/build.make CMakeFiles/cmTC_c8711.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c8711.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=dladdr   -o CMakeFiles/cmTC_c8711.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.15/Modules/CheckFunctionExists.c
+Linking C executable cmTC_c8711
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c8711.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=dladdr    -rdynamic CMakeFiles/cmTC_c8711.dir/CheckFunctionExists.c.o  -o cmTC_c8711 
+CMakeFiles/cmTC_c8711.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x10): undefined reference to `dladdr'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_c8711.dir/build.make:86: recipe for target 'cmTC_c8711' failed
+make[4]: *** [cmTC_c8711] Error 1
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_c8711/fast' failed
+make[3]: *** [cmTC_c8711/fast] Error 2
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Performing C++ SOURCE FILE Test HAVE_NO_UNNAMED_TYPE_TEMPLATE_ARGS failed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_38512/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_38512.dir/build.make CMakeFiles/cmTC_38512.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_38512.dir/src.cxx.o
+/usr/bin/c++    -DHAVE_NO_UNNAMED_TYPE_TEMPLATE_ARGS   -Wunnamed-type-template-args -o CMakeFiles/cmTC_38512.dir/src.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.cxx
+c++: error: unrecognized command line option '-Wunnamed-type-template-args'
+CMakeFiles/cmTC_38512.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_38512.dir/src.cxx.o' failed
+make[4]: *** [CMakeFiles/cmTC_38512.dir/src.cxx.o] Error 1
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_38512/fast' failed
+make[3]: *** [cmTC_38512/fast] Error 2
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Determining if the function UnDecorateSymbolName exists in the dbghelp failed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_99960/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_99960.dir/build.make CMakeFiles/cmTC_99960.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_99960.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=UnDecorateSymbolName   -o CMakeFiles/cmTC_99960.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.15/Modules/CheckFunctionExists.c
+Linking C executable cmTC_99960
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_99960.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=UnDecorateSymbolName    -rdynamic CMakeFiles/cmTC_99960.dir/CheckFunctionExists.c.o  -o cmTC_99960 -ldbghelp 
+/usr/bin/ld: cannot find -ldbghelp
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_99960.dir/build.make:86: recipe for target 'cmTC_99960' failed
+make[4]: *** [cmTC_99960] Error 1
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_99960/fast' failed
+make[3]: *** [cmTC_99960/fast] Error 2
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Performing C SOURCE FILE Test HAVE_RWLOCK failed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_7a7a4/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_7a7a4.dir/build.make CMakeFiles/cmTC_7a7a4.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7a7a4.dir/src.c.o
+/usr/bin/cc   -DHAVE_RWLOCK   -o CMakeFiles/cmTC_7a7a4.dir/src.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_7a7a4
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7a7a4.dir/link.txt --verbose=1
+/usr/bin/cc  -DHAVE_RWLOCK    -rdynamic CMakeFiles/cmTC_7a7a4.dir/src.c.o  -o cmTC_7a7a4 
+CMakeFiles/cmTC_7a7a4.dir/src.c.o: In function `main':
+src.c:(.text+0x24): undefined reference to `pthread_rwlock_init'
+src.c:(.text+0x30): undefined reference to `pthread_rwlock_rdlock'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_7a7a4.dir/build.make:86: recipe for target 'cmTC_7a7a4' failed
+make[4]: *** [cmTC_7a7a4] Error 1
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_7a7a4/fast' failed
+make[3]: *** [cmTC_7a7a4/fast] Error 2
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#define _XOPEN_SOURCE 500
+#include <pthread.h>
+int main(void)
+{
+  pthread_rwlock_t l;
+  pthread_rwlock_init(&l, NULL);
+  pthread_rwlock_rdlock(&l);
+  return 0;
+}
+
+Performing C SOURCE FILE Test HAVE___DECLSPEC failed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_a27ee/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_a27ee.dir/build.make CMakeFiles/cmTC_a27ee.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a27ee.dir/src.c.o
+/usr/bin/cc   -DHAVE___DECLSPEC   -o CMakeFiles/cmTC_a27ee.dir/src.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.c
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.c:2:1: warning: return type defaults to ‘int’ [-Wimplicit-int]
+ __declspec(selectany) int a;
+ ^~~~~~~~~~
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.c: In function ‘__declspec’:
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.c:3:16: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘{’ token
+ int main(void) { return 0; }
+                ^
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.c:2:1: warning: type of ‘selectany’ defaults to ‘int’ [-Wimplicit-int]
+ __declspec(selectany) int a;
+ ^~~~~~~~~~
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.c:2:27: error: declaration for parameter ‘a’ but no such parameter
+ __declspec(selectany) int a;
+                           ^
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.c:3:16: error: expected ‘{’ at end of input
+ int main(void) { return 0; }
+                ^
+CMakeFiles/cmTC_a27ee.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_a27ee.dir/src.c.o' failed
+make[4]: *** [CMakeFiles/cmTC_a27ee.dir/src.c.o] Error 1
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_a27ee/fast' failed
+make[3]: *** [cmTC_a27ee/fast] Error 2
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+__declspec(selectany) int a;
+int main(void) { return 0; }
+
+Performing C++ SOURCE FILE Test STL_NO_NAMESPACE failed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_85d56/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_85d56.dir/build.make CMakeFiles/cmTC_85d56.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_85d56.dir/src.cxx.o
+/usr/bin/c++    -DSTL_NO_NAMESPACE   -o CMakeFiles/cmTC_85d56.dir/src.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.cxx
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.cxx:3:1: error: ‘vector’ does not name a type
+ vector<int> t; int main() { }
+ ^~~~~~
+CMakeFiles/cmTC_85d56.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_85d56.dir/src.cxx.o' failed
+make[4]: *** [CMakeFiles/cmTC_85d56.dir/src.cxx.o] Error 1
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_85d56/fast' failed
+make[3]: *** [cmTC_85d56/fast] Error 2
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#include <vector>
+vector<int> t; int main() { }
+
+Performing C++ SOURCE FILE Test HAVE_MSVC_TLS failed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_512e5/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_512e5.dir/build.make CMakeFiles/cmTC_512e5.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_512e5.dir/src.cxx.o
+/usr/bin/c++    -DHAVE_MSVC_TLS   -o CMakeFiles/cmTC_512e5.dir/src.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.cxx
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.cxx:2:11: error: expected constructor, destructor, or type conversion before ‘(’ token
+ __declspec(thread) int tls;
+           ^
+CMakeFiles/cmTC_512e5.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_512e5.dir/src.cxx.o' failed
+make[4]: *** [CMakeFiles/cmTC_512e5.dir/src.cxx.o] Error 1
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_512e5/fast' failed
+make[3]: *** [cmTC_512e5/fast] Error 2
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+__declspec(thread) int tls;
+int main() { }
+
+Determining if the include file libunwind.h exists failed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_e9a38/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_e9a38.dir/build.make CMakeFiles/cmTC_e9a38.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e9a38.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_e9a38.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: libunwind.h: No such file or directory
+ #include <libunwind.h>
+          ^~~~~~~~~~~~~
+compilation terminated.
+CMakeFiles/cmTC_e9a38.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_e9a38.dir/CheckIncludeFile.c.o' failed
+make[4]: *** [CMakeFiles/cmTC_e9a38.dir/CheckIncludeFile.c.o] Error 1
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_e9a38/fast' failed
+make[3]: *** [cmTC_e9a38/fast] Error 2
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function get_static_proc_name exists in the unwind failed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_56785/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_56785.dir/build.make CMakeFiles/cmTC_56785.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_56785.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=get_static_proc_name   -o CMakeFiles/cmTC_56785.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.15/Modules/CheckFunctionExists.c
+Linking C executable cmTC_56785
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_56785.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=get_static_proc_name    -rdynamic CMakeFiles/cmTC_56785.dir/CheckFunctionExists.c.o  -o cmTC_56785 -lunwind 
+/usr/bin/ld: cannot find -lunwind
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_56785.dir/build.make:86: recipe for target 'cmTC_56785' failed
+make[4]: *** [cmTC_56785] Error 1
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Makefile:121: recipe for target 'cmTC_56785/fast' failed
+make[3]: *** [cmTC_56785/fast] Error 2
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+

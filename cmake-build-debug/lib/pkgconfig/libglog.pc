@@ -1,0 +1,10 @@
+prefix=/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug
+exec_prefix=/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/bin
+libdir=/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/lib
+includedir=/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/include
+
+Name: libglog
+Description: Google Log (glog) C++ logging framework
+Version: 0.4.0
+Libs: -L${libdir} -lglog
+Cflags: -I${includedir}

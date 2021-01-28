@@ -1,0 +1,109 @@
+Start testing: Dec 11 14:49 CST
+----------------------------------------------------------
+78/82 Testing: QE_Test.create_and_delete_table_with_index
+78/82 Test: QE_Test.create_and_delete_table_with_index
+Command: "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/qetest_public" "--gtest_filter=QE_Test.create_and_delete_table_with_index" "--gtest_also_run_disabled_tests"
+Directory: /home/cherrycreek28/cs222-fall20-team-17
+"QE_Test.create_and_delete_table_with_index" start time: Dec 11 14:49 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googletest-prefix/src/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = QE_Test.create_and_delete_table_with_index
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from QE_Test
+[ RUN      ] QE_Test.create_and_delete_table_with_index
+[       OK ] QE_Test.create_and_delete_table_with_index (5561 ms)
+[----------] 1 test from QE_Test (5561 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (5561 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   5.57 sec
+----------------------------------------------------------
+Test Passed.
+"QE_Test.create_and_delete_table_with_index" end time: Dec 11 14:49 CST
+"QE_Test.create_and_delete_table_with_index" time elapsed: 00:00:05
+----------------------------------------------------------
+
+79/82 Testing: QE_Test.table_scan_with_max_aggregation
+79/82 Test: QE_Test.table_scan_with_max_aggregation
+Command: "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/qetest_public" "--gtest_filter=QE_Test.table_scan_with_max_aggregation" "--gtest_also_run_disabled_tests"
+Directory: /home/cherrycreek28/cs222-fall20-team-17
+"QE_Test.table_scan_with_max_aggregation" start time: Dec 11 14:49 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googletest-prefix/src/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = QE_Test.table_scan_with_max_aggregation
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from QE_Test
+[ RUN      ] QE_Test.table_scan_with_max_aggregation
+
+[  INFO ] /home/cherrycreek28/cs222-fall20-team-17/test/utils/general_test_utils.h:140:: Target string: A: 1128529920, B: 54, C: 210.5, MAX(left.B): 1.77965e-43 
+/home/cherrycreek28/cs222-fall20-team-17/test/utils/general_test_utils.h:151: Failure
+Expected equality of these values:
+  targetMap.size()
+    Which is: 4
+  expectedMap.size()
+    Which is: 1
+Fields count should be equal.
+[  FAILED  ] QE_Test.table_scan_with_max_aggregation (171615 ms)
+[----------] 1 test from QE_Test (171615 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (171615 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] QE_Test.table_scan_with_max_aggregation
+
+ 1 FAILED TEST
+<end of output>
+Test time = 171.63 sec
+----------------------------------------------------------
+Test Failed.
+"QE_Test.table_scan_with_max_aggregation" end time: Dec 11 14:52 CST
+"QE_Test.table_scan_with_max_aggregation" time elapsed: 00:02:51
+----------------------------------------------------------
+
+80/82 Testing: QE_Test.index_scan_with_avg_aggregation
+80/82 Test: QE_Test.index_scan_with_avg_aggregation
+Command: "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/qetest_public" "--gtest_filter=QE_Test.index_scan_with_avg_aggregation" "--gtest_also_run_disabled_tests"
+Directory: /home/cherrycreek28/cs222-fall20-team-17
+"QE_Test.index_scan_with_avg_aggregation" start time: Dec 11 14:52 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googletest-prefix/src/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = QE_Test.index_scan_with_avg_aggregation
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from QE_Test
+[ RUN      ] QE_Test.index_scan_with_avg_aggregation
+
+[  INFO ] /home/cherrycreek28/cs222-fall20-team-17/test/utils/general_test_utils.h:140:: Target string: B: 1125156258, C: 175.5, D: 75, AVG(right.B): 1.77965e-43 
+/home/cherrycreek28/cs222-fall20-team-17/test/utils/general_test_utils.h:151: Failure
+Expected equality of these values:
+  targetMap.size()
+    Which is: 4
+  expectedMap.size()
+    Which is: 1
+Fields count should be equal.
+[  FAILED  ] QE_Test.index_scan_with_avg_aggregation (229009 ms)
+[----------] 1 test from QE_Test (229009 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (229009 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] QE_Test.index_scan_with_avg_aggregation
+
+ 1 FAILED TEST
+<end of output>
+Test time = 229.02 sec
+----------------------------------------------------------
+Test Failed.
+"QE_Test.index_scan_with_avg_aggregation" end time: Dec 11 14:56 CST
+"QE_Test.index_scan_with_avg_aggregation" time elapsed: 00:03:49
+----------------------------------------------------------
+

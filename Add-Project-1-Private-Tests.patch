@@ -1,0 +1,1089 @@
+From cca71f08890a833d45e08ffd1ba004ac391b8bab Mon Sep 17 00:00:00 2001
+From: Shengquan Ni <Hiseen@github.noreply.com>
+Date: Mon, 12 Oct 2020 18:46:35 -0700
+Subject: [PATCH 1/1] Add Project 1 Private Tests
+
+Signed-off-by: Yicong Huang <hyc541978023@gmail.com>
+---
+ CMakeLists.txt                  |   4 +-
+ test/pfm/pfmtest_private.cc     | 132 +++++++
+ test/rbfm/rbfmtest_private.cc   | 638 ++++++++++++++++++++++++++++++++
+ test/utils/general_test_utils.h |  25 +-
+ test/utils/pfm_test_utils.h     |  34 ++
+ test/utils/rbfm_test_utils.h    |  96 +++--
+ 6 files changed, 892 insertions(+), 37 deletions(-)
+ create mode 100644 test/pfm/pfmtest_private.cc
+ create mode 100644 test/rbfm/rbfmtest_private.cc
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index e43168b..c7651c5 100755
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -13,11 +13,13 @@ include(ExternalProject)
+ 
+ ExternalProject_Add(googletest
+         GIT_REPOSITORY https://github.com/google/googletest.git
++        GIT_TAG release-1.10.0
+         CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}
+         )
+ 
+ ExternalProject_Add(googlelog
+-        GIT_REPOSITORY https://github.com/Yicong-Huang/glog.git
++        GIT_REPOSITORY https://github.com/google/glog.git
++        GIT_TAG v0.4.0
+         CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR} -DWITH_GFLAGS=OFF
+         )
+ 
+diff --git a/test/pfm/pfmtest_private.cc b/test/pfm/pfmtest_private.cc
+new file mode 100644
+index 0000000..caadb83
+--- /dev/null
++++ b/test/pfm/pfmtest_private.cc
+@@ -0,0 +1,132 @@
++#include "src/include/pfm.h"
++#include "test/utils/pfm_test_utils.h"
++
++namespace PeterDBTesting {
++    TEST_F (PFM_Private_Test, check_page_num_after_appending) {
++        // Test case procedure:
++        // 1. Append 39 Pages
++        // 2. Check Page Number after each append
++        // 3. Keep the file for the next test case
++
++        size_t currentFileSize = getFileSize(fileName);
++        inBuffer = malloc(PAGE_SIZE);
++        int numPages = 39;
++        for (int i = 1; i <= numPages; i++) {
++            generateData(inBuffer, PAGE_SIZE, 53 + i, 47 - i);
++            ASSERT_EQ(fileHandle.appendPage(inBuffer), success) << "Appending a page should succeed.";
++            ASSERT_TRUE(getFileSize(fileName) % PAGE_SIZE == 0) << "File should be based on PAGE_SIZE.";
++            ASSERT_GT(getFileSize(fileName), currentFileSize) << "File size should have been increased";
++            currentFileSize = getFileSize(fileName);
++            ASSERT_EQ(fileHandle.getNumberOfPages(), i)
++                                        << "The page count should be " << i << " at this moment";
++        }
++        destroyFile = false;
++
++    }
++
++    TEST_F (PFM_Private_Test, check_page_num_after_writing) {
++        // Test case procedure:
++        // 1. Overwrite the 39 Pages from the previous test case
++        // 2. Check Page Number after each write
++        // 3. Keep the file for the next test case
++
++        inBuffer = malloc(PAGE_SIZE);
++        int numPages = 39;
++        size_t fileSizeAfterAppend = getFileSize(fileName);
++        for (int i = 0; i < numPages; i++) {
++            generateData(inBuffer, PAGE_SIZE, 47 + i, 53 - i);
++            ASSERT_EQ(fileHandle.writePage(i, inBuffer), success) << "Writing a page should succeed.";
++            ASSERT_TRUE(getFileSize(fileName) % PAGE_SIZE == 0) << "File should be based on PAGE_SIZE.";
++            ASSERT_EQ(getFileSize(fileName), fileSizeAfterAppend) << "File size should not have been increased";
++            ASSERT_EQ(fileHandle.getNumberOfPages(), numPages) << "The page count should not have been increased";
++        }
++        destroyFile = false;
++    }
++
++    TEST_F (PFM_Private_Test, check_page_num_after_reading) {
++        // Test case procedure:
++        // 1. Read the 39 Pages from the previous test case
++        // 2. Check Page Number after each read
++
++        inBuffer = malloc(PAGE_SIZE);
++        outBuffer = malloc(PAGE_SIZE);
++        int numPages = 39;
++        size_t fileSizeAfterAppend = getFileSize(fileName);
++        for (int i = 0; i < numPages; i++) {
++            generateData(inBuffer, PAGE_SIZE, 47 + i, 53 - i);
++            ASSERT_EQ(fileHandle.readPage(i, outBuffer), success) << "Reading a page should succeed.";
++            ASSERT_TRUE(getFileSize(fileName) % PAGE_SIZE == 0) << "File should be based on PAGE_SIZE.";
++            ASSERT_EQ(fileHandle.getNumberOfPages(), numPages) << "The page count should not have been increased.";
++            ASSERT_EQ(getFileSize(fileName), fileSizeAfterAppend) << "File size should not have been increased.";
++            ASSERT_EQ(memcmp(inBuffer, outBuffer, PAGE_SIZE), 0)
++                                        << "Checking the integrity of the page should succeed.";
++        }
++    }
++
++    TEST_F (PFM_Private_Test, check_counters) {
++        // Functions Tested:
++        // 1. Open File
++        // 2. Append Page
++        // 3. Close File
++        // 4. Open File again
++        // 5. Get Number Of Pages
++        // 6. Get Counter Values
++        // 7. Close File
++
++        unsigned readPageCount = 0;
++        unsigned writePageCount = 0;
++        unsigned appendPageCount = 0;
++        unsigned readPageCount1 = 0;
++        unsigned writePageCount1 = 0;
++        unsigned appendPageCount1 = 0;
++
++
++        // Collect before counters
++        ASSERT_EQ(fileHandle.collectCounterValues(readPageCount, writePageCount, appendPageCount), success)
++                                    << "Collecting counters should succeed.";
++
++        // Append the first page read the first page write the first page append the second page
++        inBuffer = malloc(PAGE_SIZE);
++        outBuffer = malloc(PAGE_SIZE);
++        generateData(inBuffer, 23, 15);
++        ASSERT_EQ(fileHandle.appendPage(inBuffer), success) << "Appending a page should succeed.";
++        ASSERT_EQ(fileHandle.readPage(0, outBuffer), success) << "Reading a page should succeed.";
++        generateData(inBuffer, 27, 30);
++        ASSERT_EQ(fileHandle.writePage(0, inBuffer), success) << "Writing a page should succeed.";
++        generateData(inBuffer, 30, 26);
++        ASSERT_EQ(fileHandle.appendPage(inBuffer), success) << "Appending a page should succeed.";
++
++        // Get the number of pages
++        ASSERT_EQ(fileHandle.getNumberOfPages(), 2) << "There should be 2 pages at this moment.";
++
++        // Get number of hidden pages used
++        ASSERT_TRUE(getFileSize(fileName) % PAGE_SIZE == 0) << "File should be based on PAGE_SIZE.";
++        unsigned numOfHiddenPage = getFileSize(fileName) / PAGE_SIZE - fileHandle.getNumberOfPages();
++
++        // collect after counters
++        ASSERT_EQ(fileHandle.collectCounterValues(readPageCount1, writePageCount1, appendPageCount1), success)
++                                    << "Collecting counters should succeed.";
++        ASSERT_TRUE(readPageCount1 - readPageCount >= 1 && readPageCount1 - readPageCount <= 1 + 4 * numOfHiddenPage) <<
++                                                                                                                      "Read counter should be correct.";
++        ASSERT_TRUE(
++                writePageCount1 - writePageCount >= 1 && writePageCount1 - writePageCount <= 1 + 4 * numOfHiddenPage)
++                                    << "Write counter should be correct.";
++        ASSERT_TRUE(
++                appendPageCount1 - appendPageCount >= 2 && appendPageCount1 - appendPageCount <= 2 + numOfHiddenPage) <<
++                                                                                                                      "Append counter should be correct.";
++
++        reopenFile();
++
++        // collect after counters
++        ASSERT_EQ(fileHandle.collectCounterValues(readPageCount, writePageCount, appendPageCount), success)
++                                    << "Collecting counters should succeed.";
++        ASSERT_TRUE(readPageCount - readPageCount1 >= 1 && readPageCount - readPageCount1 <= numOfHiddenPage)
++                                    << "Read counter should be correct.";
++        ASSERT_TRUE(writePageCount - writePageCount1 >= 0 && writePageCount - writePageCount1 <= numOfHiddenPage)
++                                    << "Write counter should be correct.";
++        ASSERT_EQ(appendPageCount, appendPageCount1) << "Append counter should be correct.";
++
++        ASSERT_GT(getFileSize(fileName), 0) << "File Size should not be zero at this moment.";
++    }
++
++}
+diff --git a/test/rbfm/rbfmtest_private.cc b/test/rbfm/rbfmtest_private.cc
+new file mode 100644
+index 0000000..529e873
+--- /dev/null
++++ b/test/rbfm/rbfmtest_private.cc
+@@ -0,0 +1,638 @@
++#include "src/include/rbfm.h"
++#include "test/utils/rbfm_test_utils.h"
++
++namespace PeterDBTesting {
++    TEST_F(RBFM_Private_Test, varchar_compact_size) {
++        // Checks whether VarChar is implemented correctly or not.
++        //
++        // Functions tested
++        // 1. Create Two Record-Based File
++        // 2. Open Two Record-Based File
++        // 3. Insert Multiple Records Into Two files
++        // 4. Close Two Record-Based File
++        // 5. Compare The File Sizes
++        // 6. Destroy Two Record-Based File
++
++        std::string fileNameLarge = fileName + "_large";
++        if (!fileExists(fileNameLarge)) {
++            // Create a file
++            ASSERT_EQ(rbfm.createFile(fileNameLarge), success) << "Creating the file should succeed: " << fileName;
++            ASSERT_TRUE(fileExists(fileNameLarge)) << "The file is not found: " << fileName;
++
++        }
++
++        // Open the file
++        PeterDB::FileHandle fileHandleLarge;
++        ASSERT_EQ(rbfm.openFile(fileNameLarge, fileHandleLarge), success)
++                                    << "Opening the file should succeed: " << fileName;
++
++        inBuffer = malloc(PAGE_SIZE);
++        memset(inBuffer, 0, PAGE_SIZE);
++
++        int numRecords = 16000;
++
++        std::vector<PeterDB::Attribute> recordDescriptor, recordDescriptorLarge;
++
++        // Each varchar field length - 200
++        createRecordDescriptorForTwitterUser(recordDescriptor);
++
++        // Each varchar field length - 800
++        createRecordDescriptorForTwitterUser2(recordDescriptorLarge);
++
++        // NULL field indicator
++        nullsIndicator = initializeNullFieldsIndicator(recordDescriptor);
++
++        PeterDB::RID rid;
++
++        // Insert records into file
++        for (unsigned i = 0; i < numRecords; i++) {
++            // Test insert Record
++            size_t size;
++            memset(inBuffer, 0, 3000);
++            prepareLargeRecordForTwitterUser(recordDescriptor.size(), nullsIndicator, i, inBuffer, size);
++
++            ASSERT_EQ(rbfm.insertRecord(fileHandle, recordDescriptor, inBuffer, rid), success)
++                                        << "Inserting a record should succeed.";
++            ASSERT_EQ(rbfm.insertRecord(fileHandleLarge, recordDescriptorLarge, inBuffer, rid), success)
++                                        << "Inserting a record should succeed.";
++
++            if (i % 1000 == 0 && i != 0) {
++                GTEST_LOG_(INFO) << i << "/" << numRecords << " records are inserted.";
++                ASSERT_TRUE(compareFileSizes(fileName, fileNameLarge)) << "Files should be the same size";
++            }
++
++        }
++
++        // Close the file
++        ASSERT_EQ(rbfm.closeFile(fileHandleLarge), success) << "Closing the file should succeed.";
++
++        // Destroy the file
++        ASSERT_EQ(rbfm.destroyFile(fileNameLarge), success) << "Destroying the file should succeed.";
++    }
++
++    TEST_F(RBFM_Private_Test, insert_records_with_empty_and_null_varchar) {
++        // Functions Tested:
++        // 1. Create File - RBFM
++        // 2. Open File
++        // 3. insertRecord() - with an empty VARCHAR field (not NULL)
++        // 4. insertRecord() - with a NULL VARCHAR field
++        // 5. Close File
++        // 6. Destroy File
++
++        PeterDB::RID rid;
++        size_t recordSize;
++        inBuffer = malloc(2000);
++        outBuffer = malloc(2000);
++        memset(inBuffer, 0, 2000);
++        memset(outBuffer, 0, 2000);
++
++        std::vector<PeterDB::Attribute> recordDescriptor;
++        createRecordDescriptorForTweetMessage(recordDescriptor);
++
++        // NULL field indicator
++        nullsIndicator = initializeNullFieldsIndicator(recordDescriptor);
++
++        // Insert a record into a file - referred_topics is an empty string - "", not null value.
++        prepareRecordForTweetMessage(recordDescriptor.size(), nullsIndicator, 1234, 0, "", 0, "", 999, 0, "",
++                                     inBuffer, recordSize);
++        ASSERT_EQ(rbfm.insertRecord(fileHandle, recordDescriptor, inBuffer, rid), success)
++                                    << "Inserting a record should succeed.";
++
++        // Given the rid, read the record from file
++        ASSERT_EQ(rbfm.readRecord(fileHandle, recordDescriptor, rid,
++                                  outBuffer), success) << "Reading a record should succeed.";
++
++        // Compare whether the two memory blocks are the same
++        ASSERT_EQ(memcmp(inBuffer, outBuffer, recordSize), 0) << "Reading empty VARCHAR incorrectly.";
++
++        // An empty string should be printed for the referred_topics field.
++        std::stringstream stream;
++        ASSERT_EQ(rbfm.printRecord(recordDescriptor, outBuffer, stream), success)
++                                    << "Printing a record should succeed.";
++        checkPrintRecord("tweetid: 1234, referred_topics: , message_text: , userid: 999, hash_tags: ", stream.str());
++
++        memset(inBuffer, 0, 2000);
++
++        free(nullsIndicator);
++        nullsIndicator = initializeNullFieldsIndicator(recordDescriptor);
++        setAttrNull(nullsIndicator, 1, true);
++        setAttrNull(nullsIndicator, 4, true);
++
++        // Insert a record
++        prepareRecordForTweetMessage(recordDescriptor.size(), nullsIndicator, 1234, 0, "", 0, "", 999, 0, "", inBuffer,
++                                     recordSize);
++
++        ASSERT_EQ(rbfm.insertRecord(fileHandle, recordDescriptor, inBuffer, rid), success)
++                                    << "Inserting a record should succeed.";
++
++        // Given the rid, read the record from file
++        ASSERT_EQ(rbfm.readRecord(fileHandle, recordDescriptor, rid, outBuffer), success)
++                                    << "Reading a record should succeed.";
++
++        // Compare whether the two memory blocks are the same
++        ASSERT_EQ(memcmp(inBuffer, outBuffer, recordSize), 0) << "Reading NULL VARCHAR incorrectly.";
++
++        // An NULL should be printed for the referred_topics field.
++        stream.str(std::string());
++        stream.clear();
++        ASSERT_EQ(rbfm.printRecord(recordDescriptor, outBuffer, stream), success)
++                                    << "Printing a record should succeed.";
++        checkPrintRecord("tweetid: 1234, referred_topics: NULL, message_text: , userid: 999, hash_tags: NULL",
++                         stream.str());
++
++        ASSERT_GT(getFileSize(fileName), 0) << "File Size should not be zero at this moment.";
++
++    }
++
++    TEST_F(RBFM_Private_Test, insert_records_with_all_nulls) {
++        // Functions Tested:
++        // 1. Create File - RBFM
++        // 2. Open File
++        // 3. insertRecord() - with all NULLs
++        // 4. Close File
++        // 5. Destroy File
++
++        PeterDB::RID rid;
++        size_t recordSize;
++        inBuffer = malloc(2000);
++        outBuffer = malloc(2000);
++        memset(inBuffer, 0, 2000);
++        memset(outBuffer, 0, 2000);
++
++        std::vector<PeterDB::RID> rids;
++
++        std::vector<PeterDB::Attribute> recordDescriptor;
++        createRecordDescriptorForTweetMessage(recordDescriptor);
++
++        // NULL field indicator
++        nullsIndicator = initializeNullFieldsIndicator(recordDescriptor);
++
++        // set all fields as NULL
++        nullsIndicator[0] = 248; // 11111000
++
++        // Insert a record into a file
++        prepareRecordForTweetMessage(recordDescriptor.size(), nullsIndicator, 1234, 9, "wildfires", 42,
++                                     "Curious ... did the amazon wildfires stop?", 999, 3, "wow", inBuffer,
++                                     recordSize);
++
++        ASSERT_EQ(rbfm.insertRecord(fileHandle, recordDescriptor, inBuffer, rid), success)
++                                    << "Inserting a record should succeed.";
++
++        rids.push_back(rid);
++        writeRIDsToDisk(rids);
++        destroyFile = false;
++
++    }
++
++    TEST_F(RBFM_Private_Test, read_records_with_all_nulls) {
++
++        PeterDB::RID rid;
++        size_t recordSize = 0;
++        inBuffer = malloc(2000);
++        outBuffer = malloc(2000);
++        memset(inBuffer, 0, 2000);
++        memset(outBuffer, 0, 2000);
++
++        std::vector<PeterDB::RID> rids;
++
++        readRIDsFromDisk(rids, 1);
++        rid = rids[0];
++
++        std::vector<PeterDB::Attribute> recordDescriptor;
++        createRecordDescriptorForTweetMessage(recordDescriptor);
++
++        // NULL field indicator
++        nullsIndicator = initializeNullFieldsIndicator(recordDescriptor);
++
++        // set all fields as NULL
++        nullsIndicator[0] = 248; // 11111000
++
++        // Insert a record into a file
++        prepareRecordForTweetMessage(recordDescriptor.size(), nullsIndicator, 1234, 9, "wildfires", 43,
++                                     "Curious ... did the amazon wildfires stop?", 999, 3, "wow", inBuffer,
++                                     recordSize);
++
++        // Given the rid, read the record from file
++        ASSERT_EQ(rbfm.readRecord(fileHandle, recordDescriptor, rid, outBuffer), success)
++                                    << "Reading a record should succeed.";
++
++        // An empty string should be printed for the referred_topics field.
++        std::stringstream stream;
++        ASSERT_EQ(rbfm.printRecord(recordDescriptor, outBuffer, stream), success)
++                                    << "Printing a record should succeed.";
++        checkPrintRecord("tweetid: NULL, referred_topics: NULL, message_text: NULL, userid: NULL, hash_tags: NULL",
++                         stream.str());
++
++
++        // Compare whether the two memory blocks are the same
++        ASSERT_EQ(memcmp(inBuffer, outBuffer, recordSize), 0) << "Reading NULL fields incorrectly.";
++
++        ASSERT_GT(getFileSize(fileName), 0) << "File Size should not be zero at this moment.";
++    }
++
++    TEST_F(RBFM_Private_Test, insert_records_with_selected_nulls) {
++        // Functions Tested:
++        // 1. Create File - RBFM
++        // 2. Open File
++        // 3. insertRecord() - with all NULLs
++        // 4. Close File
++        // 5. Destroy File
++
++
++        PeterDB::RID rid;
++        unsigned recordSize = 0;
++        inBuffer = malloc(2000);
++        outBuffer = malloc(2000);
++        memset(inBuffer, 0, 2000);
++        memset(outBuffer, 0, 2000);
++
++        std::vector<PeterDB::RID> rids;
++
++        std::vector<PeterDB::Attribute> recordDescriptor;
++        createLargeRecordDescriptor3(recordDescriptor);
++
++        // NULL field indicator
++        nullsIndicator = initializeNullFieldsIndicator(recordDescriptor);
++
++        // Setting the following bytes as NULL
++        // The entire byte representation is: 100011011000001111001000
++        //                                    123456789012345678901234
++        nullsIndicator[0] = 157; // 10011101
++        nullsIndicator[1] = 130; // 10000010
++        nullsIndicator[2] = 75;  // 01001011
++
++        // Insert a record into a file
++        prepareLargeRecord3(recordDescriptor.size(), nullsIndicator, 8, inBuffer, &recordSize);
++
++        ASSERT_EQ(rbfm.insertRecord(fileHandle, recordDescriptor, inBuffer, rid), success)
++                                    << "Inserting a record should succeed.";
++
++        rids.push_back(rid);
++        writeRIDsToDisk(rids);
++        destroyFile = false;
++
++    }
++
++    TEST_F(RBFM_Private_Test, read_records_with_selected_nulls) {
++
++        PeterDB::RID rid;
++        unsigned recordSize = 0;
++        inBuffer = malloc(2000);
++        outBuffer = malloc(2000);
++        memset(inBuffer, 0, 2000);
++        memset(outBuffer, 0, 2000);
++
++        std::vector<PeterDB::RID> rids;
++
++        std::vector<PeterDB::Attribute> recordDescriptor;
++        createLargeRecordDescriptor3(recordDescriptor);
++
++        readRIDsFromDisk(rids, 1);
++        rid = rids[0];
++
++        // NULL field indicator
++        nullsIndicator = initializeNullFieldsIndicator(recordDescriptor);
++
++        // Setting the following bytes as NULL
++        // The entire byte representation is: 100011011000001111001000
++        //                                    123456789012345678901234
++        nullsIndicator[0] = 157; // 10011101
++        nullsIndicator[1] = 130; // 10000010
++        nullsIndicator[2] = 75;  // 01001011
++
++        // Insert a record into a file
++        prepareLargeRecord3(recordDescriptor.size(), nullsIndicator, 8, inBuffer, &recordSize);
++
++        // Given the rid, read the record from file
++        ASSERT_EQ(rbfm.readRecord(fileHandle, recordDescriptor, rid, outBuffer), success)
++                                    << "Reading a record should succeed.";
++
++        // An empty string should be printed for the referred_topics field.
++        std::stringstream stream;
++        ASSERT_EQ(rbfm.printRecord(recordDescriptor, outBuffer, stream), success)
++                                    << "Printing a record should succeed.";
++        checkPrintRecord(
++                "attr0: NULL, attr1: 8, attr2: 5.001, attr3: NULL, attr4: NULL, attr5: NULL, attr6: JJJJJJ, attr7: NULL, attr8: NULL, attr9: MMMMMMMMM, attr10: 8, attr11: 14.001, attr12: PPPPPPPPPPPP, attr13: 8, attr14: NULL, attr15: SSSSSSSSSSSSSSS, attr16: 8, attr17: NULL, attr18: VVVVVVVVVVVVVVVVVV, attr19: 8, attr20: NULL, attr21: YYYYYYYYYYYYYYYYYYYYY, attr22: NULL, attr23: NULL",
++                stream.str());
++
++        // Compare whether the two memory blocks are the same
++        ASSERT_EQ(memcmp(inBuffer, outBuffer, recordSize), 0) << "Reading NULL fields incorrectly.";
++
++        ASSERT_GT(getFileSize(fileName), 0) << "File Size should not be zero at this moment.";
++    }
++
++    TEST_F(RBFM_Private_Test, insert_large_records) {
++        // Functions Tested:
++        // 1. Create File - RBFM
++        // 2. Open File
++        // 3. insertRecord() - a big sized record so that two records cannot fit in a page.
++        // 4. Close File
++        // 5. Destroy File
++
++        unsigned readPageCount = 0, writePageCount = 0, appendPageCount = 0;
++        unsigned updatedReadPageCount = 0, updatedWritePageCount = 0, updatedAppendPageCount = 0;
++
++        std::vector<PeterDB::RID> rids;
++
++        PeterDB::RID rid;
++        size_t recordSize = 0;
++        inBuffer = malloc(3000);
++        outBuffer = malloc(3000);
++
++        std::vector<PeterDB::Attribute> recordDescriptor;
++        createLargeRecordDescriptor4(recordDescriptor);
++
++        // NULL field indicator
++        nullsIndicator = initializeNullFieldsIndicator(recordDescriptor);
++
++        unsigned numRecords = 15;
++
++        // Collect before counters
++        ASSERT_EQ(fileHandle.collectCounterValues(readPageCount, writePageCount, appendPageCount), success)
++                                    << "Collecting counters should succeed.";
++
++        for (int i = 0; i < numRecords; i++) {
++            // Insert a record into the file
++            prepareLargeRecord4(recordDescriptor.size(), nullsIndicator, 2061,
++                                inBuffer, recordSize);
++
++            ASSERT_EQ(rbfm.insertRecord(fileHandle, recordDescriptor, inBuffer, rid), success)
++                                        << "Inserting a record should succeed.";
++
++            rids.push_back(rid);
++
++            // collect after counters - 1
++            ASSERT_EQ(fileHandle.collectCounterValues(updatedReadPageCount, updatedWritePageCount,
++                                                      updatedAppendPageCount), success)
++                                        << "Collecting counters should succeed.";
++
++            ASSERT_LT(appendPageCount, updatedAppendPageCount)
++                                        << "The implementation regarding appendPage() is not correct.";
++
++            readPageCount = updatedReadPageCount;
++            writePageCount = updatedWritePageCount;
++            appendPageCount = updatedAppendPageCount;
++
++        }
++
++        ASSERT_GT(getFileSize(fileName), 0) << "File Size should not be zero at this moment.";
++
++        writeRIDsToDisk(rids);
++
++        destroyFile = false;
++
++    }
++
++    TEST_F(RBFM_Private_Test, read_large_records) {
++        // Functions Tested:
++        // 1. Create File - RBFM
++        // 2. Open File
++        // 3. insertRecord() - a big sized record so that two records cannot fit in a page.
++        // 4. Close File
++        // 5. Destroy File
++
++        size_t recordSize = 0;
++        inBuffer = malloc(3000);
++        outBuffer = malloc(3000);
++
++        std::vector<PeterDB::Attribute> recordDescriptor;
++        createLargeRecordDescriptor4(recordDescriptor);
++
++        // NULL field indicator
++        nullsIndicator = initializeNullFieldsIndicator(recordDescriptor);
++
++        unsigned numRecords = 15;
++        std::vector<PeterDB::RID> rids;
++
++        readRIDsFromDisk(rids, numRecords);
++
++        for (int i = 0; i < numRecords; i++) {
++            // Insert a record into the file
++            prepareLargeRecord4(recordDescriptor.size(), nullsIndicator, 2061,
++                                inBuffer, recordSize);
++
++            // Given the rid, read the record from file
++            ASSERT_EQ(rbfm.readRecord(fileHandle, recordDescriptor, rids[i], outBuffer), success)
++                                        << "Reading a record should succeed.";
++
++            // Compare whether the two memory blocks are the same
++            ASSERT_EQ(memcmp(inBuffer, outBuffer, recordSize), 0) << "Reading fields incorrectly.";
++
++        }
++    }
++
++    TEST_F(RBFM_Private_Test, insert_to_trigger_fill_lookup_and_append) {
++        // Functions Tested:
++        // 1. Create File - RBFM
++        // 2. Open File
++        // 3. insertRecord() - checks if we can't find an enough space in the last page,
++        //                     the system checks from the beginning of the file.
++        // 4. Close File
++        // 5. Destroy File
++
++        unsigned readPageCount = 0, writePageCount = 0, appendPageCount = 0;
++        unsigned updatedReadPageCount = 0, updatedWritePageCount = 0, updatedAppendPageCount = 0;
++        unsigned deltaReadPageCount, deltaWritePageCount, deltaAppendPageCount;
++
++        // Get the initial number of pages in the file.
++        // If the file size is bigger than number of pages, we assume there are hidden pages.
++        bool hiddenPageExists = fileHandle.getNumberOfPages() < getFileSize(fileName) % PAGE_SIZE;
++
++        PeterDB::RID rid;
++        size_t recordSize = 0;
++        inBuffer = malloc(3000);
++
++        std::vector<PeterDB::Attribute> recordDescriptor;
++        createLargeRecordDescriptor4(recordDescriptor);
++
++        // NULL field indicator
++        nullsIndicator = initializeNullFieldsIndicator(recordDescriptor);
++
++        int numRecords = 30;
++
++        // Insert 30 records into the file
++        for (int i = 0; i < numRecords; i++) {
++            memset(inBuffer, 0, 3000);
++            prepareLargeRecord4(recordDescriptor.size(), nullsIndicator, 2060 + i, inBuffer, recordSize);
++
++            ASSERT_EQ(rbfm.insertRecord(fileHandle, recordDescriptor, inBuffer, rid), success)
++                                        << "Inserting a record should succeed.";
++        }
++
++        // Collect counters before having one more insert
++        ASSERT_EQ(fileHandle.collectCounterValues(readPageCount, writePageCount, appendPageCount), success)
++                                    << "Collecting counters should succeed.";
++
++        // One more insertion
++        memset(inBuffer, 0, 3000);
++        prepareLargeRecord4(recordDescriptor.size(), nullsIndicator, 2160, inBuffer, recordSize);
++
++        ASSERT_EQ(rbfm.insertRecord(fileHandle, recordDescriptor, inBuffer, rid), success)
++                                    << "Inserting a record should succeed.";
++
++        // Collect after counters
++        ASSERT_EQ(fileHandle.collectCounterValues(updatedReadPageCount, updatedWritePageCount,
++                                                  updatedAppendPageCount), success)
++                                    << "Collecting counters should succeed.";
++
++        // Calculate the counter differences
++        deltaReadPageCount = updatedReadPageCount - readPageCount;
++        deltaWritePageCount = updatedWritePageCount - writePageCount;
++        deltaAppendPageCount = updatedAppendPageCount - appendPageCount;
++
++        // If a directory exists in hidden pages, then we need to read at least one page and append one page.
++        // Also, we need to update the directory structure. So, we need to have one write.
++        if (hiddenPageExists) {
++            ASSERT_TRUE(deltaReadPageCount >= 1 && deltaReadPageCount < numRecords)
++                                        << "The implementation regarding insertRecord() is not correct.";
++            ASSERT_GE(deltaWritePageCount, 1) << "The implementation regarding insertRecord() is not correct.";
++            ASSERT_GE(deltaAppendPageCount, 1) << "The implementation regarding insertRecord() is not correct.";
++
++        } else {
++            // Each page can only contain one record. So, deltaReadPageCount should be greater than or equal to 30
++            // since the system needs to go through all pages from the beginning.
++            ASSERT_GE(deltaReadPageCount, numRecords) << "The implementation regarding insertRecord() is not correct.";
++        }
++
++        ASSERT_GT(getFileSize(fileName), 0) << "File Size should not be zero at this moment.";
++    }
++
++    TEST_F(RBFM_Private_Test, insert_massive_records) {
++        // Functions Tested:
++        // 1. Create File
++        // 2. Open File
++        // 3. Insert 160000 records into File
++
++        PeterDB::RID rid;
++        inBuffer = malloc(1000);
++        outBuffer = malloc(1000);
++        memset(inBuffer, 0, 1000);
++        memset(outBuffer, 0, 1000);
++
++        int numRecords = 160000;
++        int batchSize = 5000;
++        std::vector<PeterDB::RID> rids;
++
++        std::vector<PeterDB::Attribute> recordDescriptorForTwitterUser;
++
++        createRecordDescriptorForTwitterUser(recordDescriptorForTwitterUser);
++
++        // NULL field indicator
++        nullsIndicator = initializeNullFieldsIndicator(recordDescriptorForTwitterUser);
++
++        // Insert numRecords records into the file
++        for (unsigned i = 0; i < numRecords / batchSize; i++) {
++            for (unsigned j = 0; j < batchSize; j++) {
++                memset(inBuffer, 0, 1000);
++                size_t size = 0;
++                prepareLargeRecordForTwitterUser(recordDescriptorForTwitterUser.size(), nullsIndicator,
++                                                 i * batchSize + j, inBuffer, size);
++                ASSERT_EQ(rbfm.insertRecord(fileHandle, recordDescriptorForTwitterUser, inBuffer, rid), success)
++                                            << "Inserting a record for the file should succeed: " << fileName;
++                rids.push_back(rid);
++            }
++
++            if (i % 5 == 0 && i != 0) {
++                GTEST_LOG_(INFO) << i << " / " << numRecords / batchSize << " batches (" << numRecords
++                                 << " records) inserted so far for file: " << fileName;
++            }
++        }
++        writeRIDsToDisk(rids);
++        destroyFile = false;
++    }
++
++    TEST_F(RBFM_Private_Test, read_massive_records) {
++        // Functions Tested:
++        // 1. Read 160000 records from File
++
++        int numRecords = 160000;
++        inBuffer = malloc(1000);
++        outBuffer = malloc(1000);
++        memset(inBuffer, 0, 1000);
++        memset(outBuffer, 0, 1000);
++
++        std::vector<PeterDB::Attribute> recordDescriptorForTwitterUser;
++        createRecordDescriptorForTwitterUser(recordDescriptorForTwitterUser);
++
++        // NULL field indicator
++        nullsIndicator = initializeNullFieldsIndicator(recordDescriptorForTwitterUser);
++
++        std::vector<PeterDB::RID> rids;
++        readRIDsFromDisk(rids, numRecords);
++
++        PeterDB::RID rid;
++        ASSERT_EQ(rids.size(), numRecords);
++        // Compare records from the disk read with the record created from the method
++        for (unsigned i = 0; i < numRecords; i++) {
++            memset(inBuffer, 0, 1000);
++            memset(outBuffer, 0, 1000);
++            rid = rids[i];
++            ASSERT_EQ(rbfm.readRecord(fileHandle, recordDescriptorForTwitterUser, rids[i], outBuffer), success)
++                                        << "Reading a record should succeed.";
++            size_t size;
++            prepareLargeRecordForTwitterUser(recordDescriptorForTwitterUser.size(), nullsIndicator, i, inBuffer, size);
++            ASSERT_EQ(memcmp(inBuffer, outBuffer, size), 0) << "Reading unmatched data.";
++        }
++    }
++
++    TEST_F(RBFM_Private_Test, measure_time_complexity) {
++        // Functions tested
++        // 1. insert 5000 records
++        // 2. read 5000 records
++
++        int numRecords = 5000;
++        PeterDB::RID rid;
++        size_t recordSize = 0;
++        inBuffer = malloc(100);
++        outBuffer = malloc(100);
++
++        std::vector<PeterDB::Attribute> recordDescriptor;
++        createRecordDescriptor(recordDescriptor);
++
++        // Initialize a NULL field indicator
++        nullsIndicator = initializeNullFieldsIndicator(recordDescriptor);
++
++        // Insert a inBuffer into a file and print the inBuffer
++        prepareRecord(recordDescriptor.size(), nullsIndicator, 8, "Anteater", 8934, 834.23, 328400, inBuffer,
++                      recordSize);
++
++        auto evaluateFunc = [&](int round) {
++            ASSERT_EQ(rbfm.insertRecord(fileHandle, recordDescriptor, inBuffer, rid), success)
++                                        << "Inserting a record should succeed.";
++        };
++
++        auto metricFunc = [&](int round) {
++            unsigned readPageCount = 0, writePageCount = 0, appendPageCount = 0;
++            fileHandle.collectCounterValues(readPageCount, writePageCount, appendPageCount);
++            return readPageCount;
++        };
++        auto expectedN = [&](int round) {
++            return fileHandle.getNumberOfPages();
++        };
++
++        // Check if insertRecord executes in O(n) page read operations
++        ASSERT_LT(checkTimeComplexity(evaluateFunc, expectedN, metricFunc, numRecords), numRecords / 100)
++                                    << "insertRecord should execute in O(n) page read operations.";
++
++        auto evaluateFunc2 = [&](int round) {
++            ASSERT_EQ(rbfm.readRecord(fileHandle, recordDescriptor, rid, outBuffer), success)
++                                        << "Reading record should succeed.";
++        };
++
++        auto metricFunc2 = [&](int round) {
++            unsigned readPageCount = 0, writePageCount = 0, appendPageCount = 0;
++            fileHandle.collectCounterValues(readPageCount, writePageCount, appendPageCount);
++            return readPageCount;
++        };
++        auto expectedN2 = [&](int round) {
++            return 1;
++        };
++
++        // Check if readRecord executes in O(1) page read operations
++        ASSERT_LE(checkTimeComplexity(evaluateFunc2, expectedN2, metricFunc2, numRecords), 2)
++                                    << "readRecord should execute in O(1) page read operations.";
++
++    }
++
++}
++
+diff --git a/test/utils/general_test_utils.h b/test/utils/general_test_utils.h
+index e146198..246ecb6 100644
+--- a/test/utils/general_test_utils.h
++++ b/test/utils/general_test_utils.h
+@@ -105,8 +105,11 @@ namespace PeterDBTesting {
+         std::string::size_type val_end;
+ 
+         while ((key_end = keyValuePairsStr.find(':', key_pos)) != std::string::npos) {
+-            if ((val_pos = keyValuePairsStr.find_first_not_of(": ", key_end)) == std::string::npos)
++            if ((val_pos = keyValuePairsStr.find_first_not_of(": ", key_end)) == std::string::npos) {
++                // Handle the case of empty string
++                outMap.emplace(trim_copy(keyValuePairsStr.substr(key_pos, key_end - key_pos)), std::string());
+                 break;
++            }
+ 
+             val_end = keyValuePairsStr.find(',', val_pos);
+             outMap.emplace(trim_copy(keyValuePairsStr.substr(key_pos, key_end - key_pos)),
+@@ -179,9 +182,9 @@ namespace PeterDBTesting {
+ 
+     static void setBit(char &src, bool value, unsigned offset) {
+         if (value) {
+-            src |= (unsigned) 1 << offset;
++            src |= 1u << offset;
+         } else {
+-            src &= ~((unsigned) 1 << offset);
++            src &= ~(1u << offset);
+         }
+     }
+ 
+@@ -192,14 +195,14 @@ namespace PeterDBTesting {
+         setBit(*((char *) src + bytes), isNull, pos);
+     }
+ 
+-    // This code is required for testing to measure the memory usage of your code.
+-    // If you can't compile the codebase because of this function, you can safely comment this function or remove it.
+-    void memProfile() {
+-        int who = RUSAGE_SELF;
+-        struct rusage usage{};
+-        getrusage(who, &usage);
+-        std::cout << usage.ru_maxrss << "KB" << std::endl;
+-    }
++//    // This code is required for testing to measure the memory usage of your code.
++//    // If you can't compile the codebase because of this function, you can safely comment this function or remove it.
++//    void memProfile() {
++//        int who = RUSAGE_SELF;
++//        struct rusage usage{};
++//        getrusage(who, &usage);
++//        std::cout << usage.ru_maxrss << "KB" << std::endl;
++//    }
+ 
+ } // namespace PeterDBTesting
+ 
+diff --git a/test/utils/pfm_test_utils.h b/test/utils/pfm_test_utils.h
+index a329b13..a564230 100644
+--- a/test/utils/pfm_test_utils.h
++++ b/test/utils/pfm_test_utils.h
+@@ -64,6 +64,40 @@ namespace PeterDBTesting {
+             ASSERT_EQ(pfm.openFile(fileName, fileHandle), success) << "Opening the file should not fail: " << fileName;
+         }
+     };
++
++    class PFM_Private_Test : public PFM_Page_Test {
++        void SetUp() override {
++
++            fileName = "pfm_private_test_file";
++
++            if (!fileExists(fileName)) {
++                // Create a file
++                ASSERT_EQ(pfm.createFile(fileName), success) << "Creating the file should not fail: " << fileName;
++                ASSERT_TRUE(fileExists(fileName)) << "The file is not found: " << fileName;
++
++            }
++
++            // Open the file
++            ASSERT_EQ(pfm.openFile(fileName, fileHandle), success) << "Opening the file should not fail: " << fileName;
++
++        }
++
++        void TearDown() override {
++
++            // Destruct the buffers
++            free(inBuffer);
++            free(outBuffer);
++
++            // Close the file
++            ASSERT_EQ(pfm.closeFile(fileHandle), success) << "Closing the file should not fail.";
++
++            if (destroyFile) {
++                // Destroy the file
++                ASSERT_EQ(pfm.destroyFile(fileName), success) << "Destroying the file should not fail.";
++            }
++
++        }
++    };
+ } // namespace PeterDBTesting
+ 
+ #endif // PFM_TEST_UTILS_H
+diff --git a/test/utils/rbfm_test_utils.h b/test/utils/rbfm_test_utils.h
+index b50cd5f..7f6f092 100644
+--- a/test/utils/rbfm_test_utils.h
++++ b/test/utils/rbfm_test_utils.h
+@@ -3,6 +3,9 @@
+ 
+ #include <cmath>
+ #include <fstream>
++#include <chrono>
++#include <numeric>
++#include <unordered_set>
+ 
+ #include "src/include/rbfm.h"
+ #include "gtest/gtest.h"
+@@ -329,6 +332,29 @@ namespace PeterDBTesting {
+             free(suffix);
+         }
+ 
++        static int
++        checkTimeComplexity(const std::function<void(int)> &func,
++                            const std::function<unsigned(int)> &expectedTimeComplexity,
++                            const std::function<unsigned(int)> &metricFunc, int numRounds) {
++            unsigned lastMetric = 0;
++            std::unordered_set<unsigned> constants;
++            // Run target function numRounds times
++            for (unsigned i = 0; i < numRounds; ++i) {
++                // Run the target function
++                func(i);
++                // Get metric for this run
++                unsigned metric = metricFunc(i);
++                // Get related N for this run
++                unsigned n = expectedTimeComplexity(i);
++                // Calculate delta/(expected N) to get the constant
++                constants.insert((metric - lastMetric) / n);
++                // Save the metric for next run
++                lastMetric = metric;
++            }
++            // return number of distinct constants
++            return constants.size();
++        }
++
+         // Record Descriptor for TweetMessage
+         static void createRecordDescriptorForTweetMessage(std::vector<PeterDB::Attribute> &recordDescriptor) {
+ 
+@@ -365,9 +391,9 @@ namespace PeterDBTesting {
+                                                  const int referred_topicsLength, const std::string &referred_topics,
+                                                  const int message_textLength, const std::string &message_text,
+                                                  const int userid, const int hash_tagsLength,
+-                                                 const std::string &hash_tags, void *buffer, unsigned *recordSize) {
++                                                 const std::string &hash_tags, void *buffer, size_t &recordSize) {
+ 
+-            unsigned offset = 0;
++            size_t offset = 0;
+ 
+             // Null-indicators
+             bool nullBit;
+@@ -434,7 +460,7 @@ namespace PeterDBTesting {
+                 offset += hash_tagsLength;
+             }
+ 
+-            *recordSize = offset;
++            recordSize = offset;
+ 
+         }
+ 
+@@ -568,9 +594,9 @@ namespace PeterDBTesting {
+         }
+ 
+         static void
+-        prepareLargeRecordForTwitterUser(int fieldCount, unsigned char *nullFieldsIndicator, const int index,
+-                                         void *buffer, int *size) {
+-            int offset = 0;
++        prepareLargeRecordForTwitterUser(int fieldCount, unsigned char *nullFieldsIndicator, const unsigned index,
++                                         void *buffer, size_t &size) {
++            size_t offset = 0;
+ 
+             // Null-indicators
+             int nullFieldsIndicatorActualSize = getActualByteForNullsIndicator(
+@@ -628,7 +654,7 @@ namespace PeterDBTesting {
+             memcpy((char *) buffer + offset, lang.c_str(), langLength);
+             offset += langLength;
+ 
+-            *size = offset;
++            size = offset;
+ 
+         }
+ 
+@@ -861,7 +887,7 @@ namespace PeterDBTesting {
+ 
+                 if (!nullBit) {
+                     // compute the floating number
+-                    auto real = (float) (attr_pos + 3);
++                    auto real = (float) (attr_pos + 3.001);
+                     memcpy((char *) buffer + offset, &real, sizeof(float));
+                     offset += sizeof(float);
+                 }
+@@ -894,8 +920,8 @@ namespace PeterDBTesting {
+         }
+ 
+         static void prepareLargeRecord4(int fieldCount, unsigned char *nullFieldsIndicator,
+-                                        const int index, void *buffer, unsigned *size) {
+-            int offset = 0;
++                                        const int index, void *buffer, size_t &size) {
++            size_t offset = 0;
+ 
+             // compute the count
+             int count = index % 2200 + 1;
+@@ -925,28 +951,48 @@ namespace PeterDBTesting {
+             memcpy((char *) buffer + offset, &index, sizeof(int));
+             offset += sizeof(int);
+ 
+-            *size = offset;
++            size = offset;
+         }
+ 
+-        static void getByteOffset(unsigned pos, unsigned &bytes, unsigned &offset) {
+-            bytes = pos / 8;
++    };
++
++    class RBFM_Private_Test : public RBFM_Test {
+ 
+-            offset = 7 - pos % 8;
+-        }
++    protected:
++        bool destroyFile = true;
++
++    public:
++        void SetUp() override {
++
++            fileName = "rbfm_private_test_file";
+ 
+-        static void setBit(char &src, bool value, unsigned offset) {
+-            if (value) {
+-                src |= (unsigned) 1 << offset;
+-            } else {
+-                src &= ~((unsigned) 1 << offset);
++            if (!fileExists(fileName)) {
++                // Create a file
++                ASSERT_EQ(rbfm.createFile(fileName), success) << "Creating the file should not fail: " << fileName;
++                ASSERT_TRUE(fileExists(fileName)) << "The file is not found: " << fileName;
+             }
++
++            // Open the file
++            ASSERT_EQ(rbfm.openFile(fileName, fileHandle), success) << "Opening the file should not fail: " << fileName;
++
+         }
+ 
+-        static void setAttrNull(void *src, ushort attrNum, bool isNull) {
+-            unsigned bytes = 0;
+-            unsigned pos = 0;
+-            getByteOffset(attrNum, bytes, pos);
+-            setBit(*((char *) src + bytes), isNull, pos);
++        void TearDown() override {
++            // Destruct the buffers
++            free(inBuffer);
++            free(outBuffer);
++            free(nullsIndicator);
++
++            // Close the file
++            ASSERT_EQ(rbfm.closeFile(fileHandle), success) << "Closing the file should not fail.";
++
++            if (destroyFile) {
++                // Destroy the file
++                ASSERT_EQ(rbfm.destroyFile(fileName), success) << "Destroying the file should not fail.";
++
++                remove("rids_file");
++                remove("sizes_file");
++            }
+         }
+ 
+     };
+-- 
+2.28.0
+

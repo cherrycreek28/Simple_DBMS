@@ -1,0 +1,5 @@
+if(EXISTS "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/test/ix/ixtest_public[1]_tests.cmake")
+  include("/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/test/ix/ixtest_public[1]_tests.cmake")
+else()
+  add_test(ixtest_public_NOT_BUILT ixtest_public_NOT_BUILT)
+endif()

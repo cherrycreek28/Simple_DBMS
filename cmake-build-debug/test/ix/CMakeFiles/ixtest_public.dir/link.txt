@@ -1,0 +1,1 @@
+/usr/bin/c++  -g  -rdynamic CMakeFiles/ixtest_public.dir/ixtest_public.cc.o  -o ../../ixtest_public  -L/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/lib -Wl,-rpath,/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/lib -lgtest -lgmock -lgtest_main -lpthread ../../src/pfm/libpfm.a ../../src/ix/libix.a ../../src/pfm/libpfm.a -lglog 

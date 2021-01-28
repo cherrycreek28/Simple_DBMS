@@ -1,0 +1,2 @@
+/usr/bin/ar qc libqe.a  CMakeFiles/qe.dir/qe.cc.o
+/usr/bin/ranlib libqe.a

@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/CMakeFiles/googlelog"
+		},
+		{
+			"file" : "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/CMakeFiles/googlelog.rule"
+		},
+		{
+			"file" : "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/CMakeFiles/googlelog-complete.rule"
+		},
+		{
+			"file" : "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-stamp/googlelog-install.rule"
+		},
+		{
+			"file" : "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-stamp/googlelog-mkdir.rule"
+		},
+		{
+			"file" : "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-stamp/googlelog-download.rule"
+		},
+		{
+			"file" : "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-stamp/googlelog-update.rule"
+		},
+		{
+			"file" : "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-stamp/googlelog-patch.rule"
+		},
+		{
+			"file" : "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-stamp/googlelog-configure.rule"
+		},
+		{
+			"file" : "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-stamp/googlelog-build.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"googlelog"
+		],
+		"name" : "googlelog"
+	}
+}

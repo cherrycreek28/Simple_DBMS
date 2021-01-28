@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/include/pfm.h
+vector
+-
+errno.h
+-
+string
+-
+stdio.h
+-
+string.h
+-
+iostream
+-
+stack
+-
+set
+-
+queue
+-
+
+/home/cherrycreek28/cs222-fall20-team-17/src/pfm/pfm.cc
+src/include/pfm.h
+/home/cherrycreek28/cs222-fall20-team-17/src/pfm/src/include/pfm.h
+

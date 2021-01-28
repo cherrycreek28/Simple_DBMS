@@ -1,0 +1,5 @@
+if(EXISTS "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/test/rbfm/rbfmtest_private[1]_tests.cmake")
+  include("/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/test/rbfm/rbfmtest_private[1]_tests.cmake")
+else()
+  add_test(rbfmtest_private_NOT_BUILT rbfmtest_private_NOT_BUILT)
+endif()

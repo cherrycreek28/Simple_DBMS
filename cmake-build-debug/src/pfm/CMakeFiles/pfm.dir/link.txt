@@ -1,0 +1,2 @@
+/usr/bin/ar qc libpfm.a  CMakeFiles/pfm.dir/pfm.cc.o
+/usr/bin/ranlib libpfm.a

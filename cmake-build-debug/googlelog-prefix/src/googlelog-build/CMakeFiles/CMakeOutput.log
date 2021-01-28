@@ -1,0 +1,1403 @@
+The system is: Linux - 4.4.0-18362-Microsoft - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/cc 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/3.15.2/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /usr/bin/c++ 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/3.15.2/CompilerIdCXX/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_6b04b/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_6b04b.dir/build.make CMakeFiles/cmTC_6b04b.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_6b04b.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_6b04b.dir/testCCompiler.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_6b04b
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6b04b.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_6b04b.dir/testCCompiler.c.o  -o cmTC_6b04b 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_bec53/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_bec53.dir/build.make CMakeFiles/cmTC_bec53.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc   -v -o CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o   -c /usr/local/share/cmake-3.15/Modules/CMakeCCompilerABI.c
+Using built-in specs.
+COLLECT_GCC=/usr/bin/cc
+OFFLOAD_TARGET_NAMES=nvptx-none
+OFFLOAD_TARGET_DEFAULT=1
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.5.0-3ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/local/share/cmake-3.15/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/ccS3v91w.s
+GNU C11 (Ubuntu 7.5.0-3ubuntu1~18.04) version 7.5.0 (x86_64-linux-gnu)
+	compiled by GNU C version 7.5.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version isl-0.19-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/7/../../../../x86_64-linux-gnu/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/lib/gcc/x86_64-linux-gnu/7/include
+ /usr/local/include
+ /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+GNU C11 (Ubuntu 7.5.0-3ubuntu1~18.04) version 7.5.0 (x86_64-linux-gnu)
+	compiled by GNU C version 7.5.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version isl-0.19-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: b62ed4a2880cd4159476ea8293b72fa8
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
+ as -v --64 -o CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o /tmp/ccS3v91w.s
+GNU assembler version 2.30 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.30
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
+Linking C executable cmTC_bec53
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bec53.dir/link.txt --verbose=1
+/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o  -o cmTC_bec53 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/cc
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
+OFFLOAD_TARGET_NAMES=nvptx-none
+OFFLOAD_TARGET_DEFAULT=1
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.5.0-3ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) 
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_bec53' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccmS4PuH.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_bec53 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_bec53' '-mtune=generic' '-march=x86-64'
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Parsed C implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/usr/lib/gcc/x86_64-linux-gnu/7/include]
+    add: [/usr/local/include]
+    add: [/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed]
+    add: [/usr/include/x86_64-linux-gnu]
+    add: [/usr/include]
+  end of search list found
+  collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/7/include] ==> [/usr/lib/gcc/x86_64-linux-gnu/7/include]
+  collapse include dir [/usr/local/include] ==> [/usr/local/include]
+  collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed] ==> [/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed]
+  collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+  collapse include dir [/usr/include] ==> [/usr/include]
+  implicit include dirs: [/usr/lib/gcc/x86_64-linux-gnu/7/include;/usr/local/include;/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed;/usr/include/x86_64-linux-gnu;/usr/include]
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/make cmTC_bec53/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_bec53.dir/build.make CMakeFiles/cmTC_bec53.dir/build]
+  ignore line: [make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o   -c /usr/local/share/cmake-3.15/Modules/CMakeCCompilerABI.c]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/cc]
+  ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
+  ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+  ignore line: [Target: x86_64-linux-gnu]
+  ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.5.0-3ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
+  ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/7/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/local/share/cmake-3.15/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/ccS3v91w.s]
+  ignore line: [GNU C11 (Ubuntu 7.5.0-3ubuntu1~18.04) version 7.5.0 (x86_64-linux-gnu)]
+  ignore line: [	compiled by GNU C version 7.5.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version isl-0.19-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+  ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/7/../../../../x86_64-linux-gnu/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/7/include]
+  ignore line: [ /usr/local/include]
+  ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed]
+  ignore line: [ /usr/include/x86_64-linux-gnu]
+  ignore line: [ /usr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C11 (Ubuntu 7.5.0-3ubuntu1~18.04) version 7.5.0 (x86_64-linux-gnu)]
+  ignore line: [	compiled by GNU C version 7.5.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version isl-0.19-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: b62ed4a2880cd4159476ea8293b72fa8]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
+  ignore line: [ as -v --64 -o CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o /tmp/ccS3v91w.s]
+  ignore line: [GNU assembler version 2.30 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.30]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
+  ignore line: [Linking C executable cmTC_bec53]
+  ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bec53.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o  -o cmTC_bec53 ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/cc]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper]
+  ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
+  ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+  ignore line: [Target: x86_64-linux-gnu]
+  ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.5.0-3ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) ]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_bec53' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccmS4PuH.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_bec53 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+    arg [/usr/lib/gcc/x86_64-linux-gnu/7/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccmS4PuH.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [--as-needed] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-pie] ==> ignore
+    arg [-znow] ==> ignore
+    arg [-zrelro] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_bec53] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o] ==> ignore
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/7] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib]
+    arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+    arg [-L/lib/../lib] ==> dir [/lib/../lib]
+    arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+    arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..]
+    arg [CMakeFiles/cmTC_bec53.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [--push-state] ==> ignore
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--pop-state] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--push-state] ==> ignore
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--pop-state] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o] ==> ignore
+  collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/7] ==> [/usr/lib/gcc/x86_64-linux-gnu/7]
+  collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+  collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib] ==> [/usr/lib]
+  collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+  collapse library dir [/lib/../lib] ==> [/lib]
+  collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+  collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+  collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> [/usr/lib]
+  implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+  implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/7;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
+  implicit fwks: []
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_b94ee/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_b94ee.dir/build.make CMakeFiles/cmTC_b94ee.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_b94ee.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_b94ee.dir/testCXXCompiler.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_b94ee
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b94ee.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_b94ee.dir/testCXXCompiler.cxx.o  -o cmTC_b94ee 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_f49dc/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_f49dc.dir/build.make CMakeFiles/cmTC_f49dc.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++    -v -o CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.15/Modules/CMakeCXXCompilerABI.cpp
+Using built-in specs.
+COLLECT_GCC=/usr/bin/c++
+OFFLOAD_TARGET_NAMES=nvptx-none
+OFFLOAD_TARGET_DEFAULT=1
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.5.0-3ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/local/share/cmake-3.15/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/ccsU6aXy.s
+GNU C++14 (Ubuntu 7.5.0-3ubuntu1~18.04) version 7.5.0 (x86_64-linux-gnu)
+	compiled by GNU C version 7.5.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version isl-0.19-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/7"
+ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/7/../../../../x86_64-linux-gnu/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/include/c++/7
+ /usr/include/x86_64-linux-gnu/c++/7
+ /usr/include/c++/7/backward
+ /usr/lib/gcc/x86_64-linux-gnu/7/include
+ /usr/local/include
+ /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed
+ /usr/include/x86_64-linux-gnu
+ /usr/include
+End of search list.
+GNU C++14 (Ubuntu 7.5.0-3ubuntu1~18.04) version 7.5.0 (x86_64-linux-gnu)
+	compiled by GNU C version 7.5.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version isl-0.19-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: 3eb3dc290cd5714c3e1c3ae751116f07
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ as -v --64 -o CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccsU6aXy.s
+GNU assembler version 2.30 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.30
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+Linking CXX executable cmTC_f49dc
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f49dc.dir/link.txt --verbose=1
+/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_f49dc 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/c++
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
+OFFLOAD_TARGET_NAMES=nvptx-none
+OFFLOAD_TARGET_DEFAULT=1
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.5.0-3ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) 
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_f49dc' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccukcFbG.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_f49dc /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_f49dc' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Parsed CXX implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/usr/include/c++/7]
+    add: [/usr/include/x86_64-linux-gnu/c++/7]
+    add: [/usr/include/c++/7/backward]
+    add: [/usr/lib/gcc/x86_64-linux-gnu/7/include]
+    add: [/usr/local/include]
+    add: [/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed]
+    add: [/usr/include/x86_64-linux-gnu]
+    add: [/usr/include]
+  end of search list found
+  collapse include dir [/usr/include/c++/7] ==> [/usr/include/c++/7]
+  collapse include dir [/usr/include/x86_64-linux-gnu/c++/7] ==> [/usr/include/x86_64-linux-gnu/c++/7]
+  collapse include dir [/usr/include/c++/7/backward] ==> [/usr/include/c++/7/backward]
+  collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/7/include] ==> [/usr/lib/gcc/x86_64-linux-gnu/7/include]
+  collapse include dir [/usr/local/include] ==> [/usr/local/include]
+  collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed] ==> [/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed]
+  collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+  collapse include dir [/usr/include] ==> [/usr/include]
+  implicit include dirs: [/usr/include/c++/7;/usr/include/x86_64-linux-gnu/c++/7;/usr/include/c++/7/backward;/usr/lib/gcc/x86_64-linux-gnu/7/include;/usr/local/include;/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed;/usr/include/x86_64-linux-gnu;/usr/include]
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/make cmTC_f49dc/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_f49dc.dir/build.make CMakeFiles/cmTC_f49dc.dir/build]
+  ignore line: [make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++    -v -o CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.15/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/c++]
+  ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
+  ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+  ignore line: [Target: x86_64-linux-gnu]
+  ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.5.0-3ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/7/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/local/share/cmake-3.15/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o -version -fstack-protector-strong -Wformat -Wformat-security -o /tmp/ccsU6aXy.s]
+  ignore line: [GNU C++14 (Ubuntu 7.5.0-3ubuntu1~18.04) version 7.5.0 (x86_64-linux-gnu)]
+  ignore line: [	compiled by GNU C version 7.5.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version isl-0.19-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/7"]
+  ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+  ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/7/../../../../x86_64-linux-gnu/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /usr/include/c++/7]
+  ignore line: [ /usr/include/x86_64-linux-gnu/c++/7]
+  ignore line: [ /usr/include/c++/7/backward]
+  ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/7/include]
+  ignore line: [ /usr/local/include]
+  ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed]
+  ignore line: [ /usr/include/x86_64-linux-gnu]
+  ignore line: [ /usr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C++14 (Ubuntu 7.5.0-3ubuntu1~18.04) version 7.5.0 (x86_64-linux-gnu)]
+  ignore line: [	compiled by GNU C version 7.5.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version isl-0.19-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: 3eb3dc290cd5714c3e1c3ae751116f07]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  ignore line: [ as -v --64 -o CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccsU6aXy.s]
+  ignore line: [GNU assembler version 2.30 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.30]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  ignore line: [Linking CXX executable cmTC_f49dc]
+  ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f49dc.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_f49dc ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/c++]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper]
+  ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
+  ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+  ignore line: [Target: x86_64-linux-gnu]
+  ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 7.5.0-3ubuntu1~18.04' --with-bugurl=file:///usr/share/doc/gcc-7/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++ --prefix=/usr --with-gcc-major-version-only --program-suffix=-7 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-libmpx --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) ]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_f49dc' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccukcFbG.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_f49dc /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+    arg [/usr/lib/gcc/x86_64-linux-gnu/7/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccukcFbG.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [--as-needed] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-pie] ==> ignore
+    arg [-znow] ==> ignore
+    arg [-zrelro] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_f49dc] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o] ==> ignore
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/7] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib]
+    arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+    arg [-L/lib/../lib] ==> dir [/lib/../lib]
+    arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+    arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+    arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..]
+    arg [CMakeFiles/cmTC_f49dc.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o] ==> ignore
+  collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/7] ==> [/usr/lib/gcc/x86_64-linux-gnu/7]
+  collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+  collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib] ==> [/usr/lib]
+  collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+  collapse library dir [/lib/../lib] ==> [/lib]
+  collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+  collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+  collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> [/usr/lib]
+  implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+  implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/7;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
+  implicit fwks: []
+
+
+Determining if the include file pthread.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_2367d/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_2367d.dir/build.make CMakeFiles/cmTC_2367d.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2367d.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_2367d.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_2367d
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2367d.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_2367d.dir/CheckIncludeFile.c.o  -o cmTC_2367d 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function pthread_create exists in the pthread passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_e5fca/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_e5fca.dir/build.make CMakeFiles/cmTC_e5fca.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e5fca.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_e5fca.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.15/Modules/CheckFunctionExists.c
+Linking C executable cmTC_e5fca
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e5fca.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_e5fca.dir/CheckFunctionExists.c.o  -o cmTC_e5fca -lpthread 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file dlfcn.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_1cad8/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_1cad8.dir/build.make CMakeFiles/cmTC_1cad8.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_1cad8.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_1cad8.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_1cad8
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1cad8.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_1cad8.dir/CheckIncludeFile.c.o  -o cmTC_1cad8 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file execinfo.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_f8850/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_f8850.dir/build.make CMakeFiles/cmTC_f8850.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f8850.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_f8850.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_f8850
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f8850.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_f8850.dir/CheckIncludeFile.c.o  -o cmTC_f8850 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file glob.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_9d781/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_9d781.dir/build.make CMakeFiles/cmTC_9d781.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_9d781.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_9d781.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_9d781
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9d781.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_9d781.dir/CheckIncludeFile.c.o  -o cmTC_9d781 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file inttypes.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_a493a/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_a493a.dir/build.make CMakeFiles/cmTC_a493a.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a493a.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_a493a.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_a493a
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a493a.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_a493a.dir/CheckIncludeFile.c.o  -o cmTC_a493a 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file memory.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_97ec5/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_97ec5.dir/build.make CMakeFiles/cmTC_97ec5.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_97ec5.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_97ec5.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_97ec5
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_97ec5.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_97ec5.dir/CheckIncludeFile.c.o  -o cmTC_97ec5 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file pwd.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_fe2ca/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_fe2ca.dir/build.make CMakeFiles/cmTC_fe2ca.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_fe2ca.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_fe2ca.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_fe2ca
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fe2ca.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_fe2ca.dir/CheckIncludeFile.c.o  -o cmTC_fe2ca 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file stdint.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_78016/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_78016.dir/build.make CMakeFiles/cmTC_78016.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_78016.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_78016.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_78016
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_78016.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_78016.dir/CheckIncludeFile.c.o  -o cmTC_78016 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file stdlib.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_0f584/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_0f584.dir/build.make CMakeFiles/cmTC_0f584.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_0f584.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_0f584.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_0f584
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0f584.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_0f584.dir/CheckIncludeFile.c.o  -o cmTC_0f584 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file string.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_36387/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_36387.dir/build.make CMakeFiles/cmTC_36387.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_36387.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_36387.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_36387
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_36387.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_36387.dir/CheckIncludeFile.c.o  -o cmTC_36387 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file strings.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_6215f/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_6215f.dir/build.make CMakeFiles/cmTC_6215f.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_6215f.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_6215f.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_6215f
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6215f.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_6215f.dir/CheckIncludeFile.c.o  -o cmTC_6215f 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file sys/stat.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_70901/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_70901.dir/build.make CMakeFiles/cmTC_70901.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_70901.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_70901.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_70901
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_70901.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_70901.dir/CheckIncludeFile.c.o  -o cmTC_70901 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file sys/syscall.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_f2a5d/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_f2a5d.dir/build.make CMakeFiles/cmTC_f2a5d.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f2a5d.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_f2a5d.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_f2a5d
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f2a5d.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_f2a5d.dir/CheckIncludeFile.c.o  -o cmTC_f2a5d 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file sys/time.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_1fbca/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_1fbca.dir/build.make CMakeFiles/cmTC_1fbca.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_1fbca.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_1fbca.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_1fbca
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1fbca.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_1fbca.dir/CheckIncludeFile.c.o  -o cmTC_1fbca 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file sys/types.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_cfd0b/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_cfd0b.dir/build.make CMakeFiles/cmTC_cfd0b.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_cfd0b.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_cfd0b.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_cfd0b
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cfd0b.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_cfd0b.dir/CheckIncludeFile.c.o  -o cmTC_cfd0b 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file sys/utsname.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_f5e88/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_f5e88.dir/build.make CMakeFiles/cmTC_f5e88.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f5e88.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_f5e88.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_f5e88
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f5e88.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_f5e88.dir/CheckIncludeFile.c.o  -o cmTC_f5e88 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file sys/wait.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_0259c/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_0259c.dir/build.make CMakeFiles/cmTC_0259c.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_0259c.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_0259c.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_0259c
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0259c.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_0259c.dir/CheckIncludeFile.c.o  -o cmTC_0259c 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file syscall.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_0f2c9/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_0f2c9.dir/build.make CMakeFiles/cmTC_0f2c9.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_0f2c9.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_0f2c9.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_0f2c9
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0f2c9.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_0f2c9.dir/CheckIncludeFile.c.o  -o cmTC_0f2c9 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file syslog.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_ecc91/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_ecc91.dir/build.make CMakeFiles/cmTC_ecc91.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ecc91.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_ecc91.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_ecc91
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ecc91.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_ecc91.dir/CheckIncludeFile.c.o  -o cmTC_ecc91 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file ucontext.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_28287/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_28287.dir/build.make CMakeFiles/cmTC_28287.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_28287.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_28287.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_28287
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_28287.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_28287.dir/CheckIncludeFile.c.o  -o cmTC_28287 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file unistd.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_13473/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_13473.dir/build.make CMakeFiles/cmTC_13473.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_13473.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_13473.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_13473
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_13473.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_13473.dir/CheckIncludeFile.c.o  -o cmTC_13473 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file ext/hash_map exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_7818c/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_7818c.dir/build.make CMakeFiles/cmTC_7818c.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_7818c.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_7818c.dir/CheckIncludeFile.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+In file included from /usr/include/c++/7/ext/hash_map:60:0,
+                 from /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx:1:
+/usr/include/c++/7/backward/backward_warning.h:32:2: warning: #warning This file includes at least one deprecated or antiquated header which may be removed without further notice at a future date. Please use a non-deprecated interface with equivalent functionality instead. For a listing of replacement headers and interfaces, consult the file backward_warning.h. To disable this warning use -Wno-deprecated. [-Wcpp]
+ #warning \
+  ^~~~~~~
+Linking CXX executable cmTC_7818c
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7818c.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_7818c.dir/CheckIncludeFile.cxx.o  -o cmTC_7818c 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file ext/hash_set exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_78b8c/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_78b8c.dir/build.make CMakeFiles/cmTC_78b8c.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_78b8c.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_78b8c.dir/CheckIncludeFile.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+In file included from /usr/include/c++/7/ext/hash_set:60:0,
+                 from /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx:1:
+/usr/include/c++/7/backward/backward_warning.h:32:2: warning: #warning This file includes at least one deprecated or antiquated header which may be removed without further notice at a future date. Please use a non-deprecated interface with equivalent functionality instead. For a listing of replacement headers and interfaces, consult the file backward_warning.h. To disable this warning use -Wno-deprecated. [-Wcpp]
+ #warning \
+  ^~~~~~~
+Linking CXX executable cmTC_78b8c
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_78b8c.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_78b8c.dir/CheckIncludeFile.cxx.o  -o cmTC_78b8c 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file ext/slist exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_7ce7d/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_7ce7d.dir/build.make CMakeFiles/cmTC_7ce7d.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_7ce7d.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_7ce7d.dir/CheckIncludeFile.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_7ce7d
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7ce7d.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_7ce7d.dir/CheckIncludeFile.cxx.o  -o cmTC_7ce7d 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file tr1/unordered_map exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_3f9ad/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_3f9ad.dir/build.make CMakeFiles/cmTC_3f9ad.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_3f9ad.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_3f9ad.dir/CheckIncludeFile.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_3f9ad
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3f9ad.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_3f9ad.dir/CheckIncludeFile.cxx.o  -o cmTC_3f9ad 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file tr1/unordered_set exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_77b8e/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_77b8e.dir/build.make CMakeFiles/cmTC_77b8e.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_77b8e.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_77b8e.dir/CheckIncludeFile.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_77b8e
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_77b8e.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_77b8e.dir/CheckIncludeFile.cxx.o  -o cmTC_77b8e 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file unordered_map exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_c8933/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_c8933.dir/build.make CMakeFiles/cmTC_c8933.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_c8933.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_c8933.dir/CheckIncludeFile.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_c8933
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c8933.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_c8933.dir/CheckIncludeFile.cxx.o  -o cmTC_c8933 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file unordered_set exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_f2419/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_f2419.dir/build.make CMakeFiles/cmTC_f2419.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_f2419.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_f2419.dir/CheckIncludeFile.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_f2419
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f2419.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_f2419.dir/CheckIncludeFile.cxx.o  -o cmTC_f2419 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file stddef.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_c16b9/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_c16b9.dir/build.make CMakeFiles/cmTC_c16b9.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c16b9.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_c16b9.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_c16b9
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c16b9.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_c16b9.dir/CheckIncludeFile.c.o  -o cmTC_c16b9 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining size of u_int16_t passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_28919/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_28919.dir/build.make CMakeFiles/cmTC_28919.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_28919.dir/HAVE_U_INT16_T.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_28919.dir/HAVE_U_INT16_T.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CheckTypeSize/HAVE_U_INT16_T.c
+Linking C executable cmTC_28919
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_28919.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_28919.dir/HAVE_U_INT16_T.c.o  -o cmTC_28919 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining size of uint16_t passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_9cfd5/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_9cfd5.dir/build.make CMakeFiles/cmTC_9cfd5.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_9cfd5.dir/HAVE_UINT16_T.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_9cfd5.dir/HAVE_UINT16_T.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CheckTypeSize/HAVE_UINT16_T.c
+Linking C executable cmTC_9cfd5
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9cfd5.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_9cfd5.dir/HAVE_UINT16_T.c.o  -o cmTC_9cfd5 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function fcntl exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_c5bfe/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_c5bfe.dir/build.make CMakeFiles/cmTC_c5bfe.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c5bfe.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=fcntl   -o CMakeFiles/cmTC_c5bfe.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.15/Modules/CheckFunctionExists.c
+Linking C executable cmTC_c5bfe
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c5bfe.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=fcntl    -rdynamic CMakeFiles/cmTC_c5bfe.dir/CheckFunctionExists.c.o  -o cmTC_c5bfe 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function pread exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_7f1e1/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_7f1e1.dir/build.make CMakeFiles/cmTC_7f1e1.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7f1e1.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pread   -o CMakeFiles/cmTC_7f1e1.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.15/Modules/CheckFunctionExists.c
+Linking C executable cmTC_7f1e1
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7f1e1.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pread    -rdynamic CMakeFiles/cmTC_7f1e1.dir/CheckFunctionExists.c.o  -o cmTC_7f1e1 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function pwrite exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_66b27/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_66b27.dir/build.make CMakeFiles/cmTC_66b27.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_66b27.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pwrite   -o CMakeFiles/cmTC_66b27.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.15/Modules/CheckFunctionExists.c
+Linking C executable cmTC_66b27
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_66b27.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pwrite    -rdynamic CMakeFiles/cmTC_66b27.dir/CheckFunctionExists.c.o  -o cmTC_66b27 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function sigaction exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_f9335/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_f9335.dir/build.make CMakeFiles/cmTC_f9335.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f9335.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sigaction   -o CMakeFiles/cmTC_f9335.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.15/Modules/CheckFunctionExists.c
+Linking C executable cmTC_f9335
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f9335.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=sigaction    -rdynamic CMakeFiles/cmTC_f9335.dir/CheckFunctionExists.c.o  -o cmTC_f9335 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function sigaltstack exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_abf5e/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_abf5e.dir/build.make CMakeFiles/cmTC_abf5e.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_abf5e.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sigaltstack   -o CMakeFiles/cmTC_abf5e.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.15/Modules/CheckFunctionExists.c
+Linking C executable cmTC_abf5e
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_abf5e.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=sigaltstack    -rdynamic CMakeFiles/cmTC_abf5e.dir/CheckFunctionExists.c.o  -o cmTC_abf5e 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+
+Performing C++ SOURCE FILE Test HAVE_NO_DEPRECATED succeeded with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_e50b6/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_e50b6.dir/build.make CMakeFiles/cmTC_e50b6.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_e50b6.dir/src.cxx.o
+/usr/bin/c++    -DHAVE_NO_DEPRECATED   -Wdeprecated -o CMakeFiles/cmTC_e50b6.dir/src.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_e50b6
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e50b6.dir/link.txt --verbose=1
+/usr/bin/c++   -DHAVE_NO_DEPRECATED    -rdynamic CMakeFiles/cmTC_e50b6.dir/src.cxx.o  -o cmTC_e50b6 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Determining if the snprintf exist passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_84ff5/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_84ff5.dir/build.make CMakeFiles/cmTC_84ff5.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_84ff5.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_84ff5.dir/CheckSymbolExists.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_84ff5
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_84ff5.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_84ff5.dir/CheckSymbolExists.c.o  -o cmTC_84ff5 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+File /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdio.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef snprintf
+  return ((int*)(&snprintf))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Performing C SOURCE FILE Test HAVE___ATTRIBUTE__ succeeded with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_e2231/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_e2231.dir/build.make CMakeFiles/cmTC_e2231.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e2231.dir/src.c.o
+/usr/bin/cc   -DHAVE___ATTRIBUTE__   -o CMakeFiles/cmTC_e2231.dir/src.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_e2231
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e2231.dir/link.txt --verbose=1
+/usr/bin/cc  -DHAVE___ATTRIBUTE__    -rdynamic CMakeFiles/cmTC_e2231.dir/src.c.o  -o cmTC_e2231 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#include <stdlib.h>
+static void foo(void) __attribute__ ((unused));
+int main(void) { return 0; }
+
+Performing C SOURCE FILE Test HAVE___ATTRIBUTE__VISIBILITY_DEFAULT succeeded with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_8862f/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_8862f.dir/build.make CMakeFiles/cmTC_8862f.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_8862f.dir/src.c.o
+/usr/bin/cc   -DHAVE___ATTRIBUTE__VISIBILITY_DEFAULT   -o CMakeFiles/cmTC_8862f.dir/src.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.c
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.c:3:1: warning: ‘visibility’ attribute ignored [-Wattributes]
+ static void foo(void) __attribute__ ((visibility("default")));
+ ^~~~~~
+Linking C executable cmTC_8862f
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8862f.dir/link.txt --verbose=1
+/usr/bin/cc  -DHAVE___ATTRIBUTE__VISIBILITY_DEFAULT    -rdynamic CMakeFiles/cmTC_8862f.dir/src.c.o  -o cmTC_8862f 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#include <stdlib.h>
+static void foo(void) __attribute__ ((visibility("default")));
+int main(void) { return 0; }
+
+Performing C SOURCE FILE Test HAVE___ATTRIBUTE__VISIBILITY_HIDDEN succeeded with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_a9ece/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_a9ece.dir/build.make CMakeFiles/cmTC_a9ece.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a9ece.dir/src.c.o
+/usr/bin/cc   -DHAVE___ATTRIBUTE__VISIBILITY_HIDDEN   -o CMakeFiles/cmTC_a9ece.dir/src.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.c
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.c:3:1: warning: ‘visibility’ attribute ignored [-Wattributes]
+ static void foo(void) __attribute__ ((visibility("hidden")));
+ ^~~~~~
+Linking C executable cmTC_a9ece
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a9ece.dir/link.txt --verbose=1
+/usr/bin/cc  -DHAVE___ATTRIBUTE__VISIBILITY_HIDDEN    -rdynamic CMakeFiles/cmTC_a9ece.dir/src.c.o  -o cmTC_a9ece 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#include <stdlib.h>
+static void foo(void) __attribute__ ((visibility("hidden")));
+int main(void) { return 0; }
+
+Performing C SOURCE FILE Test HAVE___BUILTIN_EXPECT succeeded with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_c1883/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_c1883.dir/build.make CMakeFiles/cmTC_c1883.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c1883.dir/src.c.o
+/usr/bin/cc   -DHAVE___BUILTIN_EXPECT   -o CMakeFiles/cmTC_c1883.dir/src.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_c1883
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c1883.dir/link.txt --verbose=1
+/usr/bin/cc  -DHAVE___BUILTIN_EXPECT    -rdynamic CMakeFiles/cmTC_c1883.dir/src.c.o  -o cmTC_c1883 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+int main(void) { if (__builtin_expect(0, 0)) return 1; return 0; }
+
+Performing C SOURCE FILE Test HAVE___SYNC_VAL_COMPARE_AND_SWAP succeeded with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_3ca2c/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_3ca2c.dir/build.make CMakeFiles/cmTC_3ca2c.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_3ca2c.dir/src.c.o
+/usr/bin/cc   -DHAVE___SYNC_VAL_COMPARE_AND_SWAP   -o CMakeFiles/cmTC_3ca2c.dir/src.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_3ca2c
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3ca2c.dir/link.txt --verbose=1
+/usr/bin/cc  -DHAVE___SYNC_VAL_COMPARE_AND_SWAP    -rdynamic CMakeFiles/cmTC_3ca2c.dir/src.c.o  -o cmTC_3ca2c 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+int main(void)
+{
+  int a; if (__sync_val_compare_and_swap(&a, 0, 1)) return 1; return 0;
+}
+
+Performing C++ SOURCE FILE Test STL_STD_NAMESPACE succeeded with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_216bc/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_216bc.dir/build.make CMakeFiles/cmTC_216bc.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_216bc.dir/src.cxx.o
+/usr/bin/c++    -DSTL_STD_NAMESPACE   -o CMakeFiles/cmTC_216bc.dir/src.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_216bc
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_216bc.dir/link.txt --verbose=1
+/usr/bin/c++   -DSTL_STD_NAMESPACE    -rdynamic CMakeFiles/cmTC_216bc.dir/src.cxx.o  -o cmTC_216bc 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#include <vector>
+std::vector<int> t; int main() { }
+
+Performing C++ SOURCE FILE Test HAVE_USING_OPERATOR succeeded with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_52a4b/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_52a4b.dir/build.make CMakeFiles/cmTC_52a4b.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_52a4b.dir/src.cxx.o
+/usr/bin/c++    -DHAVE_USING_OPERATOR   -o CMakeFiles/cmTC_52a4b.dir/src.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_52a4b
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_52a4b.dir/link.txt --verbose=1
+/usr/bin/c++   -DHAVE_USING_OPERATOR    -rdynamic CMakeFiles/cmTC_52a4b.dir/src.cxx.o  -o cmTC_52a4b 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#include <iostream>
+std::ostream& operator<<(std::ostream&, struct s);
+using ::operator<<;
+int main() { }
+
+Performing C++ SOURCE FILE Test HAVE_NAMESPACES succeeded with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_5450c/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_5450c.dir/build.make CMakeFiles/cmTC_5450c.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_5450c.dir/src.cxx.o
+/usr/bin/c++    -DHAVE_NAMESPACES   -o CMakeFiles/cmTC_5450c.dir/src.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_5450c
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5450c.dir/link.txt --verbose=1
+/usr/bin/c++   -DHAVE_NAMESPACES    -rdynamic CMakeFiles/cmTC_5450c.dir/src.cxx.o  -o cmTC_5450c 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+namespace Outer { namespace Inner { int i = 0; }}
+using namespace Outer::Inner;;
+int main() { return i; }
+
+Performing C++ SOURCE FILE Test HAVE_GCC_TLS succeeded with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_c0142/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_c0142.dir/build.make CMakeFiles/cmTC_c0142.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_c0142.dir/src.cxx.o
+/usr/bin/c++    -DHAVE_GCC_TLS   -o CMakeFiles/cmTC_c0142.dir/src.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_c0142
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c0142.dir/link.txt --verbose=1
+/usr/bin/c++   -DHAVE_GCC_TLS    -rdynamic CMakeFiles/cmTC_c0142.dir/src.cxx.o  -o cmTC_c0142 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+__thread int tls;
+int main() { }
+
+Performing C++ SOURCE FILE Test HAVE_CXX11_TLS succeeded with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_f2638/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_f2638.dir/build.make CMakeFiles/cmTC_f2638.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_f2638.dir/src.cxx.o
+/usr/bin/c++    -DHAVE_CXX11_TLS   -o CMakeFiles/cmTC_f2638.dir/src.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_f2638
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f2638.dir/link.txt --verbose=1
+/usr/bin/c++   -DHAVE_CXX11_TLS    -rdynamic CMakeFiles/cmTC_f2638.dir/src.cxx.o  -o cmTC_f2638 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+thread_local int tls;
+int main() { }
+
+Performing C++ SOURCE FILE Test HAVE_ALIGNED_STORAGE succeeded with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_d55db/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_d55db.dir/build.make CMakeFiles/cmTC_d55db.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_d55db.dir/src.cxx.o
+/usr/bin/c++    -DHAVE_ALIGNED_STORAGE   -o CMakeFiles/cmTC_d55db.dir/src.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_d55db
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d55db.dir/link.txt --verbose=1
+/usr/bin/c++   -DHAVE_ALIGNED_STORAGE    -rdynamic CMakeFiles/cmTC_d55db.dir/src.cxx.o  -o cmTC_d55db 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#include <type_traits>
+std::aligned_storage<sizeof(char), alignof(char)>::type data;
+int main() { }
+
+Performing C++ SOURCE FILE Test HAVE_LOCALTIME_R succeeded with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_f1015/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_f1015.dir/build.make CMakeFiles/cmTC_f1015.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_f1015.dir/src.cxx.o
+/usr/bin/c++    -DHAVE_LOCALTIME_R   -o CMakeFiles/cmTC_f1015.dir/src.cxx.o -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_f1015
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f1015.dir/link.txt --verbose=1
+/usr/bin/c++   -DHAVE_LOCALTIME_R    -rdynamic CMakeFiles/cmTC_f1015.dir/src.cxx.o  -o cmTC_f1015 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+
+#include <cstdlib>
+#include <time.h>
+int main()
+{
+    time_t timep;
+    struct tm result;
+    localtime_r(&timep, &result);
+    return EXIT_SUCCESS;
+}
+
+Determining if the include file unwind.h exists passed with the following output:
+Change Dir: /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_0e6fe/fast && make[3]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_0e6fe.dir/build.make CMakeFiles/cmTC_0e6fe.dir/build
+make[4]: Entering directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_0e6fe.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_0e6fe.dir/CheckIncludeFile.c.o   -c /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_0e6fe
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0e6fe.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_0e6fe.dir/CheckIncludeFile.c.o  -o cmTC_0e6fe 
+make[4]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+make[3]: Leaving directory '/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-build/CMakeFiles/CMakeTmp'
+
+
+

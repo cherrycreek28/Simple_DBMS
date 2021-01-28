@@ -1,0 +1,73 @@
+Start testing: Dec 10 17:54 CST
+----------------------------------------------------------
+78/79 Testing: QE_Test.create_and_delete_table_with_index
+78/79 Test: QE_Test.create_and_delete_table_with_index
+Command: "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/qetest_public" "--gtest_filter=QE_Test.create_and_delete_table_with_index" "--gtest_also_run_disabled_tests"
+Directory: /home/cherrycreek28/cs222-fall20-team-17
+"QE_Test.create_and_delete_table_with_index" start time: Dec 10 17:54 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googletest-prefix/src/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = QE_Test.create_and_delete_table_with_index
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from QE_Test
+[ RUN      ] QE_Test.create_and_delete_table_with_index
+[       OK ] QE_Test.create_and_delete_table_with_index (5077 ms)
+[----------] 1 test from QE_Test (5077 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (5077 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   5.09 sec
+----------------------------------------------------------
+Test Passed.
+"QE_Test.create_and_delete_table_with_index" end time: Dec 10 17:54 CST
+"QE_Test.create_and_delete_table_with_index" time elapsed: 00:00:05
+----------------------------------------------------------
+
+79/79 Testing: QE_Test.ghjoin_on_int
+79/79 Test: QE_Test.ghjoin_on_int
+Command: "/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/qetest_public" "--gtest_filter=QE_Test.ghjoin_on_int" "--gtest_also_run_disabled_tests"
+Directory: /home/cherrycreek28/cs222-fall20-team-17
+"QE_Test.ghjoin_on_int" start time: Dec 10 17:54 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googletest-prefix/src/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = QE_Test.ghjoin_on_int
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from QE_Test
+[ RUN      ] QE_Test.ghjoin_on_int
+
+[  INFO ] /home/cherrycreek28/cs222-fall20-team-17/test/utils/general_test_utils.h:140:: Target string: left.A: 0, left.B: 100, left.C: 89.5, right.B: 100, right.C: 105.5, right.D: 80 
+
+[  INFO ] /home/cherrycreek28/cs222-fall20-team-17/test/utils/general_test_utils.h:140:: Target string: left.A: 123, left.B: 44, left.C: 153.5, right.B: 44, right.C: 100.5, right.D: 104 
+
+[  INFO ] /home/cherrycreek28/cs222-fall20-team-17/test/utils/general_test_utils.h:140:: Target string: left.A: 15, left.B: 98, left.C: 182.5, right.B: 98, right.C: 103.5, right.D: 78 
+
+[  INFO ] /home/cherrycreek28/cs222-fall20-team-17/test/utils/general_test_utils.h:140:: Target string: left.A: 177, left.B: 187, left.C: 60.5, right.B: 187, right.C: 102.5, right.D: 99 
+
+[  INFO ] /home/cherrycreek28/cs222-fall20-team-17/test/utils/general_test_utils.h:140:: Target string: left.A: 202, left.B: 153, left.C: 78.5, right.B: 153, right.C: 108.5, right.D: 135 
+
+[  INFO ] /home/cherrycreek28/cs222-fall20-team-17/test/utils/general_test_utils.h:140:: Target string: left.A: 45, left.B: 115, left.C: 121.5, right.B: 115, right.C: 100.5, right.D: 60 
+
+[  INFO ] /home/cherrycreek28/cs222-fall20-team-17/test/utils/general_test_utils.h:140:: Target string: left.A: 7, left.B: 155, left.C: 50.5, right.B: 155, right.C: 100.5, right.D: 30 
+
+[  INFO ] /home/cherrycreek28/cs222-fall20-team-17/test/utils/general_test_utils.h:140:: Target string: left.A: 94, left.B: 194, left.C: 183.5, right.B: 194, right.C: 100.5, right.D: 81 
+[       OK ] QE_Test.ghjoin_on_int (3581029 ms)
+[----------] 1 test from QE_Test (3581029 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (3581029 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time = 3581.05 sec
+----------------------------------------------------------
+Test Passed.
+"QE_Test.ghjoin_on_int" end time: Dec 10 18:54 CST
+"QE_Test.ghjoin_on_int" time elapsed: 00:59:41
+----------------------------------------------------------
+
+End testing: Dec 10 18:54 CST

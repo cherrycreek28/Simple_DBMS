@@ -1,0 +1,2 @@
+/usr/bin/ar qc libix.a  CMakeFiles/ix.dir/ix.cc.o
+/usr/bin/ranlib libix.a

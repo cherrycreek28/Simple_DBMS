@@ -1,0 +1,2 @@
+/usr/bin/ar qc librbfm.a  CMakeFiles/rbfm.dir/rbfm.cc.o
+/usr/bin/ranlib librbfm.a

@@ -1,0 +1,13 @@
+# Target labels
+ googlelog
+# Source files and their labels
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/CMakeFiles/googlelog
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/CMakeFiles/googlelog.rule
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/CMakeFiles/googlelog-complete.rule
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-stamp/googlelog-install.rule
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-stamp/googlelog-mkdir.rule
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-stamp/googlelog-download.rule
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-stamp/googlelog-update.rule
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-stamp/googlelog-patch.rule
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-stamp/googlelog-configure.rule
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/googlelog-prefix/src/googlelog-stamp/googlelog-build.rule

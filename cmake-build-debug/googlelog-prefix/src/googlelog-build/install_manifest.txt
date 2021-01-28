@@ -1,0 +1,10 @@
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/lib/libglog.a
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/include/glog/logging.h
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/include/glog/raw_logging.h
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/include/glog/stl_logging.h
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/include/glog/vlog_is_on.h
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/include/glog/log_severity.h
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/lib/cmake/glog/glog-config.cmake
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/lib/cmake/glog/glog-config-version.cmake
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/lib/cmake/glog/glog-targets.cmake
+/home/cherrycreek28/cs222-fall20-team-17/cmake-build-debug/lib/cmake/glog/glog-targets-noconfig.cmake

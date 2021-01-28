@@ -1,0 +1,1816 @@
+From 16bf78d28b8de626953bca8e7d5f625ff772066d Mon Sep 17 00:00:00 2001
+From: Yicong Huang <hyc541978023@gmail.com>
+Date: Sun, 22 Nov 2020 05:24:15 -0800
+Subject: [PATCH 1/1] Add Project 4
+
+---
+ README.md                       |   6 +-
+ report/project4.md              |  71 +++
+ src/CMakeLists.txt              |   1 +
+ src/include/qe.h                | 266 +++++++++++
+ src/include/rm.h                |  25 +
+ src/qe/CMakeLists.txt           |   3 +
+ src/qe/qe.cc                    | 102 ++++
+ src/rm/CMakeLists.txt           |   4 +-
+ test/CMakeLists.txt             |   1 +
+ test/qe/CMakeLists.txt          |   6 +
+ test/qe/qetest_public.cc        | 805 ++++++++++++++++++++++++++++++++
+ test/utils/general_test_utils.h |  22 +-
+ test/utils/qe_test_util.h       | 337 +++++++++++++
+ 13 files changed, 1642 insertions(+), 7 deletions(-)
+ create mode 100644 report/project4.md
+ create mode 100755 src/include/qe.h
+ create mode 100644 src/qe/CMakeLists.txt
+ create mode 100755 src/qe/qe.cc
+ create mode 100644 test/qe/CMakeLists.txt
+ create mode 100644 test/qe/qetest_public.cc
+ create mode 100755 test/utils/qe_test_util.h
+
+diff --git a/README.md b/README.md
+index f95f22a..c772abc 100644
+--- a/README.md
++++ b/README.md
+@@ -3,12 +3,12 @@
+ #### This is the project codebase for Principles of Data Management, PeterDB
+ 
+ 
+-### Components (current):
++### Components:
+  - PagedFileManager
+  - RecordBasedFileManager
+  - RelationManager
+  - IndexManage
+- - ...
++ - QueryEngine
+ 
+ ### Use CLion for development
+  - Simply open (or clone) the repo as a project in CLion
+@@ -46,7 +46,7 @@
+ 
+ ### Project Instruction
+  
+-- Implement the IndexManager(IX) component. Write your implementation in the corresponding .cc files under `src` directory.
++- Implement the QueryEngine(QE) component. Write your implementation in the corresponding .cc files under `src` directory.
+ 
+ - DO NOT change the pre-defined APIs (classes, functions, methods) in the given .h files.
+ If you think some changes are really necessary, please contact us first.
+diff --git a/report/project4.md b/report/project4.md
+new file mode 100644
+index 0000000..3ce9cd3
+--- /dev/null
++++ b/report/project4.md
+@@ -0,0 +1,71 @@
++## Project 4 Report
++
++
++### 1. Basic information
++ - Team #:
++ - Github Repo Link:
++ - Student 1 UCI NetID:
++ - Student 1 Name:
++ - Student 2 UCI NetID (if applicable):
++ - Student 2 Name (if applicable):
++
++
++### 2. Catalog information about Index
++- Show your catalog information about an index (tables, columns). 
++
++
++
++### 3. Filter
++- Describe how your filter works (especially, how you check the condition.)
++
++
++
++### 4. Project
++- Describe how your project works.
++
++
++
++### 5. Block Nested Loop Join
++- Describe how your block nested loop join works (especially, how you manage the given buffers.)
++
++
++
++### 6. Index Nested Loop Join
++- Describe how your index nested loop join works. 
++
++
++
++### 7. Grace Hash Join (If you have implemented this feature)
++- Describe how your grace hash join works (especially, in-memory structure).
++
++
++
++### 8. Aggregation
++- Describe how your basic aggregation works.
++
++
++- Describe how your group-based aggregation works. (If you have implemented this feature)
++  
++  
++
++### 9. Implementation Detail
++- Have you added your own module or source file (.cc or .h)? 
++  Clearly list the changes on files and CMakeLists.txt, if any.
++
++
++
++- Other implementation details:
++
++
++
++### 10. Member contribution (for team of two)
++- Explain how you distribute the workload in team.
++
++
++
++### 11. Other (optional)
++- Freely use this section to tell us about things that are related to the project 4, but not related to the other sections (optional)
++
++
++
++- Feedback on the project to help improve the project. (optional)
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 7966847..d00ce30 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -4,4 +4,5 @@ add_subdirectory(pfm)
+ add_subdirectory(rbfm)
+ add_subdirectory(ix)
+ add_subdirectory(rm)
++add_subdirectory(qe)
+ 
+diff --git a/src/include/qe.h b/src/include/qe.h
+new file mode 100755
+index 0000000..1c28fdf
+--- /dev/null
++++ b/src/include/qe.h
+@@ -0,0 +1,266 @@
++#ifndef _qe_h_
++#define _qe_h_
++
++#include <vector>
++#include <string>
++
++#include "rm.h"
++#include "ix.h"
++
++namespace PeterDB {
++
++#define QE_EOF (-1)  // end of the index scan
++    typedef enum AggregateOp {
++        MIN = 0, MAX, COUNT, SUM, AVG
++    } AggregateOp;
++
++    // The following functions use the following
++    // format for the passed data.
++    //    For INT and REAL: use 4 bytes
++    //    For VARCHAR: use 4 bytes for the length followed by the characters
++
++    typedef struct Value {
++        AttrType type;          // type of value
++        void *data;             // value
++    } Value;
++
++    typedef struct Condition {
++        std::string lhsAttr;        // left-hand side attribute
++        CompOp op;                  // comparison operator
++        bool bRhsIsAttr;            // TRUE if right-hand side is an attribute and not a value; FALSE, otherwise.
++        std::string rhsAttr;        // right-hand side attribute if bRhsIsAttr = TRUE
++        Value rhsValue;             // right-hand side value if bRhsIsAttr = FALSE
++    } Condition;
++
++    class Iterator {
++        // All the relational operators and access methods are iterators.
++    public:
++        virtual RC getNextTuple(void *data) = 0;
++
++        virtual RC getAttributes(std::vector<Attribute> &attrs) const = 0;
++
++        virtual ~Iterator() = default;
++    };
++
++    class TableScan : public Iterator {
++        // A wrapper inheriting Iterator over RM_ScanIterator
++    private:
++        RelationManager &rm;
++        RM_ScanIterator iter;
++        std::string tableName;
++        std::vector<Attribute> attrs;
++        std::vector<std::string> attrNames;
++        RID rid;
++    public:
++        TableScan(RelationManager &rm, const std::string &tableName, const char *alias = NULL) : rm(rm) {
++            //Set members
++            this->tableName = tableName;
++
++            // Get Attributes from RM
++            rm.getAttributes(tableName, attrs);
++
++            // Get Attribute Names from RM
++            for (const Attribute &attr : attrs) {
++                // convert to char *
++                attrNames.push_back(attr.name);
++            }
++
++            // Call RM scan to get an iterator
++            rm.scan(tableName, "", NO_OP, NULL, attrNames, iter);
++
++            // Set alias
++            if (alias) this->tableName = alias;
++        };
++
++        // Start a new iterator given the new compOp and value
++        void setIterator() {
++            iter.close();
++            rm.scan(tableName, "", NO_OP, NULL, attrNames, iter);
++        };
++
++        RC getNextTuple(void *data) override {
++            return iter.getNextTuple(rid, data);
++        };
++
++        RC getAttributes(std::vector<Attribute> &attributes) const override {
++            attributes.clear();
++            attributes = this->attrs;
++
++            // For attribute in std::vector<Attribute>, name it as rel.attr
++            for (Attribute &attribute : attributes) {
++                attribute.name = tableName + "." + attribute.name;
++            }
++        };
++
++        ~TableScan() override {
++            iter.close();
++        };
++    };
++
++    class IndexScan : public Iterator {
++        // A wrapper inheriting Iterator over IX_IndexScan
++    private:
++        RelationManager &rm;
++        RM_IndexScanIterator iter;
++        std::string tableName;
++        std::string attrName;
++        std::vector<Attribute> attrs;
++        char key[PAGE_SIZE];
++        RID rid;
++    public:
++        IndexScan(RelationManager &rm, const std::string &tableName, const std::string &attrName,
++                  const char *alias = NULL) : rm(rm) {
++            // Set members
++            this->tableName = tableName;
++            this->attrName = attrName;
++
++            // Get Attributes from RM
++            rm.getAttributes(tableName, attrs);
++
++            // Call rm indexScan to get iterator
++            rm.indexScan(tableName, attrName, NULL, NULL, true, true, iter);
++
++            // Set alias
++            if (alias) this->tableName = alias;
++        };
++
++        // Start a new iterator given the new key range
++        void setIterator(void *lowKey, void *highKey, bool lowKeyInclusive, bool highKeyInclusive) {
++            iter.close();
++            rm.indexScan(tableName, attrName, lowKey, highKey, lowKeyInclusive, highKeyInclusive, iter);
++        };
++
++        RC getNextTuple(void *data) override {
++            RC rc = iter.getNextEntry(rid, key);
++            if (rc == 0) {
++                rc = rm.readTuple(tableName, rid, data);
++            }
++            return rc;
++        };
++
++        RC getAttributes(std::vector<Attribute> &attributes) const override {
++            attributes.clear();
++            attributes = this->attrs;
++
++
++            // For attribute in std::vector<Attribute>, name it as rel.attr
++            for (Attribute &attribute : attributes) {
++                attribute.name = tableName + "." + attribute.name;
++            }
++        };
++
++        ~IndexScan() override {
++            iter.close();
++        };
++    };
++
++    class Filter : public Iterator {
++        // Filter operator
++    public:
++        Filter(Iterator *input,               // Iterator of input R
++               const Condition &condition     // Selection condition
++        );
++
++        ~Filter() override;
++
++        RC getNextTuple(void *data) override;
++
++        // For attribute in std::vector<Attribute>, name it as rel.attr
++        RC getAttributes(std::vector<Attribute> &attrs) const override;
++    };
++
++    class Project : public Iterator {
++        // Projection operator
++    public:
++        Project(Iterator *input,                                // Iterator of input R
++                const std::vector<std::string> &attrNames);     // std::vector containing attribute names
++        ~Project() override;
++
++        RC getNextTuple(void *data) override;
++
++        // For attribute in std::vector<Attribute>, name it as rel.attr
++        RC getAttributes(std::vector<Attribute> &attrs) const override;
++    };
++
++    class BNLJoin : public Iterator {
++        // Block nested-loop join operator
++    public:
++        BNLJoin(Iterator *leftIn,            // Iterator of input R
++                TableScan *rightIn,           // TableScan Iterator of input S
++                const Condition &condition,   // Join condition
++                const unsigned numPages       // # of pages that can be loaded into memory,
++                //   i.e., memory block size (decided by the optimizer)
++        );
++
++        ~BNLJoin() override;
++
++        RC getNextTuple(void *data) override;
++
++        // For attribute in std::vector<Attribute>, name it as rel.attr
++        RC getAttributes(std::vector<Attribute> &attrs) const override;
++    };
++
++    class INLJoin : public Iterator {
++        // Index nested-loop join operator
++    public:
++        INLJoin(Iterator *leftIn,           // Iterator of input R
++                IndexScan *rightIn,          // IndexScan Iterator of input S
++                const Condition &condition   // Join condition
++        );
++
++        ~INLJoin() override;
++
++        RC getNextTuple(void *data) override;
++
++        // For attribute in std::vector<Attribute>, name it as rel.attr
++        RC getAttributes(std::vector<Attribute> &attrs) const override;
++    };
++
++    // 10 extra-credit points
++    class GHJoin : public Iterator {
++        // Grace hash join operator
++    public:
++        GHJoin(Iterator *leftIn,               // Iterator of input R
++               Iterator *rightIn,               // Iterator of input S
++               const Condition &condition,      // Join condition (CompOp is always EQ)
++               const unsigned numPartitions     // # of partitions for each relation (decided by the optimizer)
++        );
++
++        ~GHJoin() override;
++
++        RC getNextTuple(void *data) override;
++
++        // For attribute in std::vector<Attribute>, name it as rel.attr
++        RC getAttributes(std::vector<Attribute> &attrs) const override;
++    };
++
++    class Aggregate : public Iterator {
++        // Aggregation operator
++    public:
++        // Mandatory
++        // Basic aggregation
++        Aggregate(Iterator *input,          // Iterator of input R
++                  const Attribute &aggAttr,        // The attribute over which we are computing an aggregate
++                  AggregateOp op            // Aggregate operation
++        );
++
++        // Optional for everyone: 5 extra-credit points
++        // Group-based hash aggregation
++        Aggregate(Iterator *input,             // Iterator of input R
++                  const Attribute &aggAttr,           // The attribute over which we are computing an aggregate
++                  const Attribute &groupAttr,         // The attribute over which we are grouping the tuples
++                  AggregateOp op              // Aggregate operation
++        );
++
++        ~Aggregate() override;
++
++        RC getNextTuple(void *data) override;
++
++        // Please name the output attribute as aggregateOp(aggAttr)
++        // E.g. Relation=rel, attribute=attr, aggregateOp=MAX
++        // output attrName = "MAX(rel.attr)"
++        RC getAttributes(std::vector<Attribute> &attrs) const override;
++    };
++} // namespace PeterDB
++
++#endif // _qe_h_
+diff --git a/src/include/rm.h b/src/include/rm.h
+index 3dc0c48..c923d78 100755
+--- a/src/include/rm.h
++++ b/src/include/rm.h
+@@ -22,6 +22,17 @@ namespace PeterDB {
+         RC close();
+     };
+ 
++    // RM_IndexScanIterator is an iterator to go through index entries
++    class RM_IndexScanIterator {
++    public:
++        RM_IndexScanIterator();    // Constructor
++        ~RM_IndexScanIterator();    // Destructor
++
++        // "key" follows the same format as in IndexManager::insertEntry()
++        RC getNextEntry(RID &rid, void *key);    // Get next matching entry
++        RC close();                              // Terminate index scan
++    };
++
+     // Relation Manager
+     class RelationManager {
+     public:
+@@ -65,6 +76,20 @@ namespace PeterDB {
+ 
+         RC dropAttribute(const std::string &tableName, const std::string &attributeName);
+ 
++        // QE IX related
++        RC createIndex(const std::string &tableName, const std::string &attributeName);
++
++        RC destroyIndex(const std::string &tableName, const std::string &attributeName);
++
++        // indexScan returns an iterator to allow the caller to go through qualified entries in index
++        RC indexScan(const std::string &tableName,
++                     const std::string &attributeName,
++                     const void *lowKey,
++                     const void *highKey,
++                     bool lowKeyInclusive,
++                     bool highKeyInclusive,
++                     RM_IndexScanIterator &rm_IndexScanIterator);
++
+     protected:
+         RelationManager();                                                  // Prevent construction
+         ~RelationManager();                                                 // Prevent unwanted destruction
+diff --git a/src/qe/CMakeLists.txt b/src/qe/CMakeLists.txt
+new file mode 100644
+index 0000000..ae84b21
+--- /dev/null
++++ b/src/qe/CMakeLists.txt
+@@ -0,0 +1,3 @@
++add_library(qe qe.cc)
++add_dependencies(qe ix rm googlelog)
++target_link_libraries(qe ix rm glog)
+\ No newline at end of file
+diff --git a/src/qe/qe.cc b/src/qe/qe.cc
+new file mode 100755
+index 0000000..a2b772f
+--- /dev/null
++++ b/src/qe/qe.cc
+@@ -0,0 +1,102 @@
++#include "src/include/qe.h"
++
++namespace PeterDB {
++    Filter::Filter(Iterator *input, const Condition &condition) {
++    }
++
++    Filter::~Filter() {
++
++    }
++
++    RC Filter::getNextTuple(void *data) {
++        return -1;
++    }
++
++    RC Filter::getAttributes(std::vector<Attribute> &attrs) const {
++        return -1;
++    }
++
++    Project::Project(Iterator *input, const std::vector<std::string> &attrNames) {
++
++    }
++
++    Project::~Project() {
++
++    }
++
++    RC Project::getNextTuple(void *data) {
++        return -1;
++    }
++
++    RC Project::getAttributes(std::vector<Attribute> &attrs) const {
++        return -1;
++    }
++
++    BNLJoin::BNLJoin(Iterator *leftIn, TableScan *rightIn, const Condition &condition, const unsigned int numPages) {
++
++    }
++
++    BNLJoin::~BNLJoin() {
++
++    }
++
++    RC BNLJoin::getNextTuple(void *data) {
++        return -1;
++    }
++
++    RC BNLJoin::getAttributes(std::vector<Attribute> &attrs) const {
++        return -1;
++    }
++
++    INLJoin::INLJoin(Iterator *leftIn, IndexScan *rightIn, const Condition &condition) {
++
++    }
++
++    INLJoin::~INLJoin() {
++
++    }
++
++    RC INLJoin::getNextTuple(void *data) {
++        return -1;
++    }
++
++    RC INLJoin::getAttributes(std::vector<Attribute> &attrs) const {
++        return -1;
++    }
++
++    GHJoin::GHJoin(Iterator *leftIn, Iterator *rightIn, const Condition &condition, const unsigned int numPartitions) {
++
++    }
++
++    GHJoin::~GHJoin() {
++
++    }
++
++    RC GHJoin::getNextTuple(void *data) {
++        return -1;
++    }
++
++    RC GHJoin::getAttributes(std::vector<Attribute> &attrs) const {
++        return -1;
++    }
++
++    Aggregate::Aggregate(Iterator *input, const Attribute &aggAttr, AggregateOp op) {
++
++    }
++
++    Aggregate::Aggregate(Iterator *input, const Attribute &aggAttr, const Attribute &groupAttr, AggregateOp op) {
++
++    }
++
++    Aggregate::~Aggregate() {
++
++    }
++
++    RC Aggregate::getNextTuple(void *data) {
++        return -1;
++    }
++
++    RC Aggregate::getAttributes(std::vector<Attribute> &attrs) const {
++        return -1;
++    }
++} // namespace PeterDB
+\ No newline at end of file
+diff --git a/src/rm/CMakeLists.txt b/src/rm/CMakeLists.txt
+index 52595f4..ddc03da 100644
+--- a/src/rm/CMakeLists.txt
++++ b/src/rm/CMakeLists.txt
+@@ -1,3 +1,3 @@
+ add_library(rm rm.cc)
+-add_dependencies(rm rbfm googlelog)
+-target_link_libraries(rm rbfm glog)
+\ No newline at end of file
++add_dependencies(rm rbfm ix googlelog)
++target_link_libraries(rm rbfm ix glog)
+\ No newline at end of file
+diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
+index 02eb9fc..94db82b 100644
+--- a/test/CMakeLists.txt
++++ b/test/CMakeLists.txt
+@@ -30,3 +30,4 @@ add_subdirectory(pfm)
+ add_subdirectory(rbfm)
+ add_subdirectory(ix)
+ add_subdirectory(rm)
++add_subdirectory(qe)
+diff --git a/test/qe/CMakeLists.txt b/test/qe/CMakeLists.txt
+new file mode 100644
+index 0000000..eecc8a1
+--- /dev/null
++++ b/test/qe/CMakeLists.txt
+@@ -0,0 +1,6 @@
++file(GLOB files qetest*.cc)
++foreach (file ${files})
++    get_filename_component(name ${file} NAME_WE)
++    gtest_add_test(${name} ${file})
++    target_link_libraries(${name} qe)
++endforeach ()
+\ No newline at end of file
+diff --git a/test/qe/qetest_public.cc b/test/qe/qetest_public.cc
+new file mode 100644
+index 0000000..d86e4fe
+--- /dev/null
++++ b/test/qe/qetest_public.cc
+@@ -0,0 +1,805 @@
++#include "test/utils/qe_test_util.h"
++
++namespace PeterDBTesting {
++    TEST_F(QE_Test, create_and_delete_table_with_index) {
++        // Tables created: left
++        // Indexes created: left.B, left.C
++        // 1. Create an Index
++        // 2. Load Data
++        // 3. Create an Index
++        inBuffer = malloc(bufSize);
++        outBuffer = malloc(bufSize);
++
++        std::string tableName = "left";
++        tableNames.emplace_back(tableName);
++
++        // Create a table
++        ASSERT_EQ(rm.createTable(tableName, attrsMap[tableName]), success)
++                                    << "Create table " << tableName << " should succeed.";
++
++        // Create an index before inserting tuples.
++        ASSERT_EQ(rm.createIndex(tableName, "B"), success) << "RelationManager.createIndex() should succeed.";
++        ASSERT_EQ(glob(".idx").size(), 1) << "There should be two index files now.";
++
++        // Insert tuples.
++        populateTable(tableName, 100);
++
++        // Create an index after inserting tuples - should reflect the currently existing tuples.
++        ASSERT_EQ(rm.createIndex(tableName, "C"), success) << "RelationManager.createIndex() should succeed.";
++        ASSERT_EQ(glob(".idx").size(), 2) << "There should be two index files now.";
++
++        destroyFile = false; // prevent from double deletion
++
++        // Destroy the file
++        ASSERT_EQ(rm.deleteTable(tableName), success) << "Destroying the file should succeed.";
++        ASSERT_FALSE(fileExists(tableName)) << "The file " << tableName << " should not exist now.";
++        ASSERT_EQ(glob(".idx").size(), 0) << "There should be no index file now.";
++
++        // Delete Catalog
++        ASSERT_EQ(rm.deleteCatalog(), success) << "Deleting the Catalog should succeed.";
++
++    }
++
++    TEST_F(QE_Test, table_scan_with_int_filter) {
++
++        // Filter -- TableScan as input, on an Integer Attribute
++        // SELECT * FROM LEFT WHERE B <= 51
++        inBuffer = malloc(bufSize);
++        outBuffer = malloc(bufSize);
++
++        std::string tableName = "left";
++        createAndPopulateTable(tableName, {"A", "B", "C"}, 1000);
++
++        PeterDB::TableScan ts(rm, tableName);
++
++        // Set up condition
++        unsigned compVal = 51;
++        PeterDB::Condition cond{"left.B", PeterDB::LE_OP, false, "", {PeterDB::TypeInt, inBuffer}};
++        *(unsigned *) cond.rhsValue.data = compVal;
++
++        // Create Filter
++        PeterDB::Filter filter(&ts, cond);
++
++        // Go over the data through iterator
++        std::vector<std::string> printed;
++        ASSERT_EQ(filter.getAttributes(attrs), success) << "Filter.getAttributes() should succeed.";
++        while (filter.getNextTuple(outBuffer) != QE_EOF) {
++            // Null indicators should be placed in the beginning.
++            std::stringstream stream;
++            ASSERT_EQ(rm.printTuple(attrs, outBuffer, stream), success)
++                                        << "RelationManager.printTuple() should succeed.";
++            printed.emplace_back(stream.str());
++            memset(outBuffer, 0, bufSize);
++        }
++
++        std::vector<std::string> expected;
++        for (int i = 0; i < 1000; i++) {
++            unsigned a = i % 203;
++            unsigned b = (i + 10) % 197;
++            float c = (float) (i % 167) + 50.5f;
++            if (b <= 51)
++                expected.emplace_back(
++                        "left.A: " + std::to_string(a) + ", left.B: " + std::to_string(b) + ", left.C: " +
++                        std::to_string(c));
++        }
++        sort(expected.begin(), expected.end());
++        sort(printed.begin(), printed.end());
++
++        ASSERT_EQ(expected.size(), printed.size()) << "The number of returned tuple is not correct.";
++
++        for (int i = 0; i < expected.size(); ++i) {
++            checkPrintRecord(expected[i], printed[i], false, {}, i % 100 == 0);
++        }
++
++    }
++
++    TEST_F(QE_Test, table_scan_with_varchar_filter) {
++        // Mandatory for all
++        // 1. Filter -- on TypeVarChar Attribute
++        // SELECT * FROM leftvarchar where B = "llllllllllll"
++
++        inBuffer = malloc(bufSize);
++        outBuffer = malloc(bufSize);
++
++        std::string tableName = "leftvarchar";
++        createAndPopulateTable(tableName, {"B", "A"}, 1000);
++
++        // Set up TableScan
++        PeterDB::TableScan ts(rm, tableName);
++
++        // Set up condition
++        PeterDB::Condition cond{"leftvarchar.B", PeterDB::EQ_OP, false, "", {PeterDB::TypeVarChar, inBuffer}};
++        unsigned length = 12;
++        *(unsigned *) ((char *) cond.rhsValue.data) = length;
++        // "llllllllllll"
++        for (unsigned i = 0; i < length; ++i) {
++            *(char *) ((char *) cond.rhsValue.data + sizeof(unsigned) + i) = 12 + 96;
++        }
++
++        // Create Filter
++        PeterDB::Filter filter(&ts, cond);
++
++        // Go over the data through iterator
++        std::vector<std::string> printed;
++        ASSERT_EQ(filter.getAttributes(attrs), success) << "Filter.getAttributes() should succeed.";
++        while (filter.getNextTuple(outBuffer) != QE_EOF) {
++            // Null indicators should be placed in the beginning.
++            std::stringstream stream;
++            ASSERT_EQ(rm.printTuple(attrs, outBuffer, stream), success)
++                                        << "RelationManager.printTuple() should succeed.";
++            printed.emplace_back(stream.str());
++            memset(outBuffer, 0, bufSize);
++        }
++
++        std::vector<std::string> expected;
++        for (int i = 0; i < 1000; i++) {
++            unsigned a = i + 20;
++            unsigned len = (i % 26) + 1;
++            std::string b = std::string(len, '\0');
++            for (int j = 0; j < len; j++) {
++                b[j] = 96 + len;
++            }
++            if (len == 12) {
++                expected.emplace_back("leftvarchar.A: " + std::to_string(a) + ", leftvarchar.B: " + b);
++            }
++        }
++        sort(expected.begin(), expected.end());
++        sort(printed.begin(), printed.end());
++
++        ASSERT_EQ(expected.size(), printed.size()) << "The number of returned tuple is not correct.";
++
++        for (int i = 0; i < expected.size(); ++i) {
++            checkPrintRecord(expected[i], printed[i], false, {}, i % 10 == 0);
++        }
++    }
++
++    TEST_F(QE_Test, index_scan_with_real_filter) {
++        // 1. Filter -- IndexScan as input, on TypeReal attribute
++        // SELECT * FROM RIGHT WHERE C >= 110.0
++
++        inBuffer = malloc(bufSize);
++        outBuffer = malloc(bufSize);
++
++        std::string tableName = "right";
++        createAndPopulateTable(tableName, {"D", "C", "B"}, 1000);
++
++        // Set up IndexScan
++        PeterDB::IndexScan is(rm, tableName, "C");
++
++        // Set up condition
++        float compVal = 110.0;
++        PeterDB::Condition cond{"right.C", PeterDB::GE_OP, false, "", {PeterDB::TypeReal, inBuffer}};
++        *(float *) cond.rhsValue.data = compVal;
++
++        // Create Filter
++        PeterDB::Filter filter(&is, cond);
++
++        // Go over the data through iterator
++        std::vector<std::string> printed;
++        ASSERT_EQ(filter.getAttributes(attrs), success) << "Filter.getAttributes() should succeed.";
++        while (filter.getNextTuple(outBuffer) != QE_EOF) {
++            // Null indicators should be placed in the beginning.
++            std::stringstream stream;
++            ASSERT_EQ(rm.printTuple(attrs, outBuffer, stream), success)
++                                        << "RelationManager.printTuple() should succeed.";
++            printed.emplace_back(stream.str());
++            memset(outBuffer, 0, bufSize);
++        }
++
++        std::vector<std::string> expected;
++        for (int i = 0; i < 1000; i++) {
++            unsigned b = i % 251 + 20;
++            float c = (float) (i % 261) + 25.5f;
++            unsigned d = i % 179;
++            if (c >= 110) {
++                expected.emplace_back(
++                        "right.B: " + std::to_string(b) + ", right.C: " + std::to_string(c) + ", right.D: " +
++                        std::to_string(d));
++            }
++
++        }
++        sort(expected.begin(), expected.end());
++        sort(printed.begin(), printed.end());
++
++        ASSERT_EQ(expected.size(), printed.size()) << "The number of returned tuple is not correct.";
++
++        for (int i = 0; i < expected.size(); ++i) {
++            checkPrintRecord(expected[i], printed[i], false, {}, i % 100 == 0);
++        }
++
++    }
++
++    TEST_F(QE_Test, table_scan_with_project) {
++        // Project -- TableScan as input
++        // SELECT C,D FROM RIGHT
++
++        inBuffer = malloc(bufSize);
++        outBuffer = malloc(bufSize);
++
++        std::string tableName = "right";
++        createAndPopulateTable(tableName, {}, 1000);
++
++        // Set up TableScan
++        PeterDB::TableScan ts(rm, tableName);
++
++        // Create Projector
++        PeterDB::Project project(&ts, {"right.D", "right.C"});
++
++        // Go over the data through iterator
++        std::vector<std::string> printed;
++        ASSERT_EQ(project.getAttributes(attrs), success) << "Project.getAttributes() should succeed.";
++        while (project.getNextTuple(outBuffer) != QE_EOF) {
++            // Null indicators should be placed in the beginning.
++            std::stringstream stream;
++            ASSERT_EQ(rm.printTuple(attrs, outBuffer, stream), success)
++                                        << "RelationManager.printTuple() should succeed.";
++            printed.emplace_back(stream.str());
++            memset(outBuffer, 0, bufSize);
++        }
++
++        std::vector<std::string> expected;
++        expected.reserve(1000);
++        for (int i = 0; i < 1000; i++) {
++            float c = (float) (i % 261) + 25.5f;
++            unsigned d = i % 179;
++
++            expected.emplace_back("right.D: " + std::to_string(d) + ", right.C: " + std::to_string(c));
++
++        }
++        sort(expected.begin(), expected.end());
++        sort(printed.begin(), printed.end());
++
++        ASSERT_EQ(expected.size(), printed.size()) << "The number of returned tuple is not correct.";
++
++        for (int i = 0; i < expected.size(); ++i) {
++            checkPrintRecord(expected[i], printed[i], false, {}, i % 100 == 0);
++        }
++
++    }
++
++    TEST_F(QE_Test, bnljoin) {
++        // 1. BNLJoin -- on TypeInt Attribute
++        // SELECT * FROM left, right where left.B = right.B
++
++        inBuffer = malloc(bufSize);
++        outBuffer = malloc(bufSize);
++
++        std::string leftTableName = "left";
++        createAndPopulateTable(leftTableName, {"B", "A", "C"}, 100);
++
++        std::string rightTableName = "right";
++        createAndPopulateTable(rightTableName, {"D", "B", "C"}, 100);
++
++        // Prepare the iterator and condition
++        PeterDB::TableScan leftIn(rm, leftTableName);
++        PeterDB::TableScan rightIn(rm, rightTableName);
++        PeterDB::Condition cond{"left.B", PeterDB::EQ_OP, true, "right.B"};
++
++        // Create BNLJoin
++        PeterDB::BNLJoin bnlJoin(&leftIn, &rightIn, cond, 5);
++
++        // Go over the data through iterator
++        std::vector<std::string> printed;
++        ASSERT_EQ(bnlJoin.getAttributes(attrs), success) << "BNLJoin.getAttributes() should succeed.";
++        while (bnlJoin.getNextTuple(outBuffer) != QE_EOF) {
++            std::stringstream stream;
++            ASSERT_EQ(rm.printTuple(attrs, outBuffer, stream), success)
++                                        << "RelationManager.printTuple() should succeed.";
++            printed.emplace_back(stream.str());
++            memset(outBuffer, 0, bufSize);
++        }
++
++        std::vector<std::string> expected;
++        for (int i = 0; i < 100; i++) {
++            unsigned a = i % 203;
++            unsigned b1 = (i + 10) % 197;
++            float c1 = (float) (i % 167) + 50.5f;
++            for (int j = 0; j < 100; j++) {
++                unsigned b2 = j % 251 + 20;
++                float c2 = (float) (j % 261) + 25.5f;
++                unsigned d = j % 179;
++                if (b1 == b2) {
++                    expected.emplace_back(
++                            "left.A: " + std::to_string(a) + ", left.B: " + std::to_string(b1) + ", left.C: " +
++                            std::to_string(c1) + ", right.B: " + std::to_string(b2) + ", right.C: " +
++                            std::to_string(c2) + ", right.D: " + std::to_string(d));
++                }
++            }
++
++        }
++        sort(expected.begin(), expected.end());
++        sort(printed.begin(), printed.end());
++
++        ASSERT_EQ(expected.size(), printed.size()) << "The number of returned tuple is not correct.";
++
++        for (int i = 0; i < expected.size(); ++i) {
++            checkPrintRecord(expected[i], printed[i]);
++        }
++
++    }
++
++    TEST_F(QE_Test, bnljoin_with_filter) {
++        // Functions Tested
++        // 1. BNLJoin -- on TypeInt Attribute
++        // 2. Filter -- on TypeInt Attribute
++        // SELECT * FROM left, right WHERE left.B = right.B AND right.B >= 100
++
++        inBuffer = malloc(bufSize);
++        outBuffer = malloc(bufSize);
++
++        std::string leftTableName = "left";
++        createAndPopulateTable(leftTableName, {"B", "C"}, 100);
++
++        std::string rightTableName = "right";
++        createAndPopulateTable(rightTableName, {"B", "C"}, 100);
++
++        // Prepare the iterator and condition
++        PeterDB::TableScan leftIn(rm, "left");
++        PeterDB::TableScan rightIn(rm, "right");
++
++        // Create BNLJoin
++        PeterDB::BNLJoin bnlJoin(&leftIn, &rightIn, {"left.B", PeterDB::EQ_OP, true, "right.B"}, 5);
++
++        int compVal = 100;
++
++        // Create Filter
++        PeterDB::Condition cond{"right.B", PeterDB::GE_OP, false, "", {PeterDB::TypeInt, inBuffer}};
++        *(unsigned *) cond.rhsValue.data = compVal;
++        PeterDB::Filter filter(&bnlJoin, cond);
++
++        // Go over the data through iterator
++        std::vector<std::string> printed;
++        ASSERT_EQ(filter.getAttributes(attrs), success) << "Filter.getAttributes() should succeed.";
++        while (filter.getNextTuple(outBuffer) != QE_EOF) {
++            std::stringstream stream;
++            ASSERT_EQ(rm.printTuple(attrs, outBuffer, stream), success)
++                                        << "RelationManager.printTuple() should succeed.";
++            printed.emplace_back(stream.str());
++            memset(outBuffer, 0, bufSize);
++        }
++
++        std::vector<std::string> expected;
++        for (int i = 0; i < 100; i++) {
++            unsigned a = i % 203;
++            unsigned b1 = (i + 10) % 197;
++            float c1 = (float) (i % 167) + 50.5f;
++            for (int j = 0; j < 100; j++) {
++                unsigned b2 = j % 251 + 20;
++                float c2 = (float) (j % 261) + 25.5f;
++                unsigned d = j % 179;
++                if (b2 >= 100 && b1 == b2) {
++
++                    expected.emplace_back(
++                            "left.A: " + std::to_string(a) + ", left.B: " + std::to_string(b1) + ", left.C: " +
++                            std::to_string(c1) + ", right.B: " + std::to_string(b2) + ", right.C: " +
++                            std::to_string(c2) + ", right.D: " + std::to_string(d));
++                }
++            }
++
++        }
++        sort(expected.begin(), expected.end());
++        sort(printed.begin(), printed.end());
++
++        ASSERT_EQ(expected.size(), printed.size()) << "The number of returned tuple is not correct.";
++
++        for (int i = 0; i < expected.size(); ++i) {
++            checkPrintRecord(expected[i], printed[i]);
++        }
++    }
++
++    TEST_F(QE_Test, inljoin) {
++        // 1. INLJoin -- on TypeReal Attribute
++        // SELECT * from left, right WHERE left.C = right.C
++
++        inBuffer = malloc(bufSize);
++        outBuffer = malloc(bufSize);
++
++        std::string leftTableName = "left";
++        createAndPopulateTable(leftTableName, {"B", "C"}, 100);
++
++        std::string rightTableName = "right";
++        createAndPopulateTable(rightTableName, {"B", "C"}, 100);
++
++        // Prepare the iterator and condition
++        PeterDB::TableScan leftIn(rm, "left");
++        PeterDB::IndexScan rightIn(rm, "right", "C");
++        PeterDB::Condition cond{"left.C", PeterDB::EQ_OP, true, "right.C"};
++
++        // Create INLJoin
++        PeterDB::INLJoin inlJoin(&leftIn, &rightIn, cond);
++
++        // Go over the data through iterator
++        std::vector<std::string> printed;
++        ASSERT_EQ(inlJoin.getAttributes(attrs), success) << "INLJoin.getAttributes() should succeed.";
++        while (inlJoin.getNextTuple(outBuffer) != QE_EOF) {
++            std::stringstream stream;
++            ASSERT_EQ(rm.printTuple(attrs, outBuffer, stream), success)
++                                        << "RelationManager.printTuple() should succeed.";
++            printed.emplace_back(stream.str());
++            memset(outBuffer, 0, bufSize);
++        }
++
++        std::vector<std::string> expected;
++        for (int i = 0; i < 100; i++) {
++            unsigned a = i % 203;
++            unsigned b1 = (i + 10) % 197;
++            float c1 = (float) (i % 167) + 50.5f;
++            for (int j = 0; j < 100; j++) {
++                unsigned b2 = j % 251 + 20;
++                float c2 = (float) (j % 261) + 25.5f;
++                unsigned d = j % 179;
++                if (c1 == c2) {
++                    expected.emplace_back(
++                            "left.A: " + std::to_string(a) + ", left.B: " + std::to_string(b1) + ", left.C: " +
++                            std::to_string(c1) + ", right.B: " + std::to_string(b2) + ", right.C: " +
++                            std::to_string(c2) + ", right.D: " + std::to_string(d));
++                }
++            }
++
++        }
++        sort(expected.begin(), expected.end());
++        sort(printed.begin(), printed.end());
++
++        ASSERT_EQ(expected.size(), printed.size()) << "The number of returned tuple is not correct.";
++
++        for (int i = 0; i < expected.size(); ++i) {
++            checkPrintRecord(expected[i], printed[i], false, {}, i % 10 == 0);
++        }
++    }
++
++    TEST_F(QE_Test, inljoin_with_filter_and_project) {
++        // 1. Filter
++        // 2. Project
++        // 3. INLJoin
++        // SELECT A1.A, A1.C, right.* FROM (SELECT * FROM left WHERE left.B < 75) A1, right WHERE A1.C = right.C
++
++        inBuffer = malloc(bufSize);
++        outBuffer = malloc(bufSize);
++
++        std::string leftTableName = "left";
++        createAndPopulateTable(leftTableName, {"B", "C"}, 100);
++
++        std::string rightTableName = "right";
++        createAndPopulateTable(rightTableName, {"B", "C"}, 100);
++
++        // Create Filter
++        PeterDB::IndexScan leftIn(rm, leftTableName, "B");
++
++        int compVal = 75;
++        PeterDB::Condition cond{"left.B", PeterDB::LT_OP, false, "", {PeterDB::TypeInt, inBuffer}};
++        *(unsigned *) cond.rhsValue.data = compVal;
++
++        leftIn.setIterator(NULL, cond.rhsValue.data, true, false);
++        PeterDB::Filter filter(&leftIn, cond);
++
++        // Create Project
++        PeterDB::Project project(&filter, {"left.A", "left.C"});
++
++        // Create Join
++        PeterDB::IndexScan rightIn(rm, rightTableName, "C");
++        PeterDB::INLJoin inlJoin(&project, &rightIn, {"left.C", PeterDB::EQ_OP, true, "right.C"});
++
++        // Go over the data through iterator
++        std::vector<std::string> printed;
++        ASSERT_EQ(inlJoin.getAttributes(attrs), success) << "INLJoin.getAttributes() should succeed.";
++        while (inlJoin.getNextTuple(outBuffer) != QE_EOF) {
++            std::stringstream stream;
++            ASSERT_EQ(rm.printTuple(attrs, outBuffer, stream), success)
++                                        << "RelationManager.printTuple() should succeed.";
++            printed.emplace_back(stream.str());
++            memset(outBuffer, 0, bufSize);
++        }
++
++        std::vector<std::string> expected;
++        for (int i = 0; i < 100; i++) {
++            unsigned a = i % 203;
++            unsigned b1 = (i + 10) % 197;
++            float c1 = (float) (i % 167) + 50.5f;
++            for (int j = 0; j < 100; j++) {
++                unsigned b2 = j % 251 + 20;
++                float c2 = (float) (j % 261) + 25.5f;
++                unsigned d = j % 179;
++                if (b1 < 75 && c1 == c2) {
++                    expected.emplace_back(
++                            "left.A: " + std::to_string(a) + ", left.C: " + std::to_string(c1) + ", right.B: " +
++                            std::to_string(b2) + ", right.C: " + std::to_string(c2) + ", right.D: " +
++                            std::to_string(d));
++                }
++            }
++
++        }
++        sort(expected.begin(), expected.end());
++        sort(printed.begin(), printed.end());
++
++        ASSERT_EQ(expected.size(), printed.size()) << "The number of returned tuple is not correct.";
++
++        for (int i = 0; i < expected.size(); ++i) {
++            checkPrintRecord(expected[i], printed[i], false, {}, i % 10 == 0);
++        }
++
++    }
++
++    TEST_F(QE_Test, table_scan_with_max_aggregation) {
++        // 1. Basic aggregation - max
++        // SELECT max(left.B) from left
++
++        inBuffer = malloc(bufSize);
++        outBuffer = malloc(bufSize);
++
++        std::string tableName = "left";
++        createAndPopulateTable(tableName, {"B", "C"}, 3000);
++
++        // Create TableScan
++        PeterDB::TableScan ts(rm, tableName);
++
++        // Create Aggregate
++        PeterDB::Aggregate agg(&ts, {"left.B", PeterDB::TypeInt, 4}, PeterDB::MAX);
++
++        ASSERT_EQ(agg.getAttributes(attrs), success) << "Aggregate.getAttributes() should succeed.";
++        ASSERT_NE(agg.getNextTuple(outBuffer), QE_EOF) << "Aggregate.getNextTuple() should succeed.";
++        std::stringstream stream;
++        ASSERT_EQ(rm.printTuple(attrs, outBuffer, stream), success)
++                                    << "RelationManager.printTuple() should succeed.";
++        checkPrintRecord("MAX(left.B): 196", stream.str());
++        ASSERT_EQ(agg.getNextTuple(outBuffer), QE_EOF) << "Only 1 tuple should be returned for MAX.";
++
++    }
++
++    TEST_F(QE_Test, index_scan_with_avg_aggregation) {
++        // 1. Basic aggregation - AVG
++        // SELECT AVG(right.B) from left
++
++        inBuffer = malloc(bufSize);
++        outBuffer = malloc(bufSize);
++
++        std::string tableName = "right";
++        createAndPopulateTable(tableName, {"B", "C"}, 3000);
++
++        // Create IndexScan
++        PeterDB::IndexScan is(rm, tableName, "B");
++
++        // Create Aggregate
++        PeterDB::Aggregate agg(&is, {"right.B", PeterDB::TypeInt, 4}, PeterDB::AVG);
++
++        ASSERT_EQ(agg.getAttributes(attrs), success) << "Aggregate.getAttributes() should succeed.";
++        ASSERT_NE(agg.getNextTuple(outBuffer), QE_EOF) << "Aggregate.getNextTuple() should succeed.";
++        std::stringstream stream;
++        ASSERT_EQ(rm.printTuple(attrs, outBuffer, stream), success)
++                                    << "RelationManager.printTuple() should succeed.";
++        checkPrintRecord("AVG(right.B): 144.522", stream.str());
++        ASSERT_EQ(agg.getNextTuple(outBuffer), QE_EOF) << "Only 1 tuple should be returned for AVG.";
++
++    }
++
++    TEST_F(QE_Test, ghjoin_on_int) {
++        // Extra credit
++        // 1. GHJoin -- on TypeInt Attribute
++        // SELECT * from left, right WHERE left.B = right.B
++
++        inBuffer = malloc(bufSize);
++        outBuffer = malloc(bufSize);
++
++        unsigned numPartitions = 10;
++
++        std::string leftTableName = "left";
++        createAndPopulateTable(leftTableName, {}, 10000);
++
++        std::string rightTableName = "right";
++        createAndPopulateTable(rightTableName, {}, 10000);
++
++        // Prepare the iterator and condition
++        PeterDB::TableScan leftIn(rm, "left");
++        PeterDB::TableScan rightIn(rm, "right");
++
++        PeterDB::Condition cond{"left.B", PeterDB::EQ_OP, true, "right.B"};
++
++        int numFiles = glob("").size();
++        // Create GHJoin - on heap so we can control its life cycle
++        auto *ghJoin = new PeterDB::GHJoin(&leftIn, &rightIn, cond, numPartitions);
++
++        // Go over the data through iterator
++        std::vector<std::string> printed;
++        ASSERT_EQ(ghJoin->getAttributes(attrs), success) << "INLJoin.getAttributes() should succeed.";
++        while (ghJoin->getNextTuple(outBuffer) != QE_EOF) {
++
++            ASSERT_GE(glob("").size(), numFiles + 20) << "There should be at least 20 partition files created.";
++
++            std::stringstream stream;
++            ASSERT_EQ(rm.printTuple(attrs, outBuffer, stream), success)
++                                        << "RelationManager.printTuple() should succeed.";
++            printed.emplace_back(stream.str());
++            memset(outBuffer, 0, bufSize);
++        }
++
++        std::vector<std::string> expected;
++        for (int i = 0; i < 10000; i++) {
++            unsigned a = i % 203;
++            unsigned b1 = (i + 10) % 197;
++            float c1 = (float) (i % 167) + 50.5f;
++            for (int j = 0; j < 10000; j++) {
++                unsigned b2 = j % 251 + 20;
++                float c2 = (float) (j % 261) + 25.5f;
++                unsigned d = j % 179;
++                if (b1 == b2) {
++                    expected.emplace_back(
++                            "left.A: " + std::to_string(a) + ", left.B: " + std::to_string(b1) + ", left.C: " +
++                            std::to_string(c1) + ", right.B: " + std::to_string(b2) + ", right.C: " +
++                            std::to_string(c2) + ", right.D: " + std::to_string(d));
++                }
++
++            }
++
++        }
++        sort(expected.begin(), expected.end());
++        sort(printed.begin(), printed.end());
++
++        ASSERT_EQ(expected.size(), printed.size()) << "The number of returned tuple is not correct.";
++
++        for (int i = 0; i < expected.size(); ++i) {
++            checkPrintRecord(expected[i], printed[i], false, {}, i % 50000 == 0);
++        }
++
++        delete ghJoin;
++        ASSERT_EQ(glob("").size(), numFiles) << "GHJoin should clean after itself.";
++    }
++
++    TEST_F(QE_Test, ghjoin_on_real) {
++        // Extra credit
++        // 1. GHJoin -- on TypeReal Attribute
++        // SELECT * from left, right WHERE left.C = right.C
++
++        inBuffer = malloc(bufSize);
++        outBuffer = malloc(bufSize);
++
++        unsigned numPartitions = 7;
++
++        std::string leftTableName = "left";
++        createAndPopulateTable(leftTableName, {}, 10000);
++
++        std::string rightTableName = "right";
++        createAndPopulateTable(rightTableName, {}, 10000);
++
++        // Prepare the iterator and condition
++        PeterDB::TableScan leftIn(rm, "left");
++        PeterDB::TableScan rightIn(rm, "right");
++        PeterDB::Condition cond{"left.C", PeterDB::EQ_OP, true, "right.C"};
++
++        int numFiles = glob("").size();
++        // Create GHJoin - on heap so we can control its life cycle
++        auto *ghJoin = new PeterDB::GHJoin(&leftIn, &rightIn, cond, numPartitions);
++
++        // Go over the data through iterator
++        std::vector<std::string> printed;
++        ASSERT_EQ(ghJoin->getAttributes(attrs), success) << "INLJoin.getAttributes() should succeed.";
++        while (ghJoin->getNextTuple(outBuffer) != QE_EOF) {
++
++            ASSERT_GE(glob("").size(), numFiles + 14) << "There should be at least 20 partition files created.";
++
++            std::stringstream stream;
++            ASSERT_EQ(rm.printTuple(attrs, outBuffer, stream), success)
++                                        << "RelationManager.printTuple() should succeed.";
++            printed.emplace_back(stream.str());
++            memset(outBuffer, 0, bufSize);
++        }
++
++        std::vector<std::string> expected;
++        for (int i = 0; i < 10000; i++) {
++            unsigned a = i % 203;
++            unsigned b1 = (i + 10) % 197;
++            float c1 = (float) (i % 167) + 50.5f;
++            for (int j = 0; j < 10000; j++) {
++                unsigned b2 = j % 251 + 20;
++                float c2 = (float) (j % 261) + 25.5f;
++                unsigned d = j % 179;
++                if (c1 == c2) {
++                    expected.emplace_back(
++                            "left.A: " + std::to_string(a) + ", left.B: " + std::to_string(b1) + ", left.C: " +
++                            std::to_string(c1) + ", right.B: " + std::to_string(b2) + ", right.C: " + std::to_string(c2)
++                            + ", right.D: " + std::to_string(d));
++                }
++
++            }
++
++        }
++        sort(expected.begin(), expected.end());
++        sort(printed.begin(), printed.end());
++
++        ASSERT_EQ(expected.size(), printed.size()) << "The number of returned tuple is not correct.";
++
++        for (int i = 0; i < expected.size(); ++i) {
++            checkPrintRecord(expected[i], printed[i], false, {}, i % 50000 == 0);
++        }
++
++        delete ghJoin;
++        ASSERT_EQ(glob("").size(), numFiles) << "GHJoin should clean after itself.";
++    }
++
++    TEST_F(QE_Test, table_scan_with_group_min_aggregation) {
++        // Extra credit
++        // Aggregate -- MIN (with GroupBy)
++        // SELECT group.B, MIN(group.A) FROM group GROUP BY group.B
++
++        inBuffer = malloc(bufSize);
++        outBuffer = malloc(bufSize);
++
++        std::string tableName = "group";
++        createAndPopulateTable(tableName, {}, 10000);
++
++        // Create TableScan
++        PeterDB::TableScan ts(rm, tableName);
++
++        // Create Aggregate
++        PeterDB::Aggregate agg(&ts, {"group.A", PeterDB::TypeInt, 4}, {"group.B", PeterDB::TypeInt, 4}, PeterDB::MIN);
++
++        // Go over the data through iterator
++        std::vector<std::string> printed;
++        ASSERT_EQ(agg.getAttributes(attrs), success) << "INLJoin.getAttributes() should succeed.";
++        while (agg.getNextTuple(outBuffer) != QE_EOF) {
++
++            std::stringstream stream;
++            ASSERT_EQ(rm.printTuple(attrs, outBuffer, stream), success)
++                                        << "RelationManager.printTuple() should succeed.";
++            printed.emplace_back(stream.str());
++            memset(outBuffer, 0, bufSize);
++        }
++
++        std::vector<std::string> expected;
++        for (int i = 1; i < 6; i++) {
++            expected.emplace_back("group.B: " + std::to_string(i) + ", MIN(group.A): " + std::to_string(i));
++        }
++        sort(expected.begin(), expected.end());
++        sort(printed.begin(), printed.end());
++
++        ASSERT_EQ(expected.size(), printed.size()) << "The number of returned tuple is not correct.";
++
++        for (int i = 0; i < expected.size(); ++i) {
++            checkPrintRecord(expected[i], printed[i], false, {}, true);
++        }
++
++    }
++
++    TEST_F(QE_Test, table_scan_with_group_sum_aggregation) {
++        // Extra credit
++        // Aggregate -- SUM (with GroupBy)
++        // SELECT group.B, SUM(group.A) FROM group GROUP BY group.B
++
++        inBuffer = malloc(bufSize);
++        outBuffer = malloc(bufSize);
++
++        std::string tableName = "group";
++        createAndPopulateTable(tableName, {}, 10000);
++
++        // Create TableScan
++        PeterDB::TableScan ts(rm, tableName);
++
++        // Create Aggregate
++        PeterDB::Aggregate agg(&ts, {"group.A", PeterDB::TypeInt, 4}, {"group.B", PeterDB::TypeInt, 4}, PeterDB::SUM);
++
++        // Go over the data through iterator
++        std::vector<std::string> printed;
++        ASSERT_EQ(agg.getAttributes(attrs), success) << "INLJoin.getAttributes() should succeed.";
++        while (agg.getNextTuple(outBuffer) != QE_EOF) {
++
++            std::stringstream stream;
++            ASSERT_EQ(rm.printTuple(attrs, outBuffer, stream), success)
++                                        << "RelationManager.printTuple() should succeed.";
++            printed.emplace_back(stream.str());
++            memset(outBuffer, 0, bufSize);
++        }
++
++        std::vector<std::string> expected;
++        for (int i = 1; i < 6; i++) {
++            expected.emplace_back("group.B: " + std::to_string(i) + ", SUM(group.A): " + std::to_string(i * 2000));
++        }
++        sort(expected.begin(), expected.end());
++        sort(printed.begin(), printed.end());
++
++        ASSERT_EQ(expected.size(), printed.size()) << "The number of returned tuple is not correct.";
++
++        for (int i = 0; i < expected.size(); ++i) {
++            checkPrintRecord(expected[i], printed[i], false, {}, true);
++        }
++
++    }
++
++} // namespace PeterDBTesting
+\ No newline at end of file
+diff --git a/test/utils/general_test_utils.h b/test/utils/general_test_utils.h
+index 446f590..c47c4b5 100644
+--- a/test/utils/general_test_utils.h
++++ b/test/utils/general_test_utils.h
+@@ -6,6 +6,7 @@
+ #include <sys/stat.h>
+ #include <sstream>
+ #include <fstream>
++#include <dirent.h>
+ 
+ #include "glog/logging.h"
+ #include "gtest/gtest.h"
+@@ -133,8 +134,9 @@ namespace PeterDBTesting {
+     }
+ 
+     void checkPrintRecord(const std::string &expected, const std::string &target, bool containsMode = false,
+-                          const std::vector<std::string> &ignoreValues = std::vector<std::string>()) {
+-        GTEST_LOG_(INFO) << "Target string: " << target;
++                          const std::vector<std::string> &ignoreValues = std::vector<std::string>(),
++                          bool verbose = true) {
++        if (verbose) GTEST_LOG_(INFO) << "Target string: " << target;
+         if (std::strcmp(normalizeKVString(expected).c_str(), target.c_str()) == 0)
+             return;
+ 
+@@ -217,6 +219,22 @@ namespace PeterDBTesting {
+         return result;
+     }
+ 
++    std::vector<std::string> glob(const std::string &suffix) {
++        std::vector<std::string> files;
++        DIR *dpdf;
++        struct dirent *epdf;
++
++        dpdf = opendir("./");
++        if (dpdf != nullptr) {
++            while ((epdf = readdir(dpdf))) {
++                if (strstr(epdf->d_name, suffix.c_str())) {
++                    files.emplace_back(epdf->d_name);
++                }
++            }
++        }
++        closedir(dpdf);
++        return files;
++    }
+ } // namespace PeterDBTesting
+ 
+ 
+diff --git a/test/utils/qe_test_util.h b/test/utils/qe_test_util.h
+new file mode 100755
+index 0000000..4447fde
+--- /dev/null
++++ b/test/utils/qe_test_util.h
+@@ -0,0 +1,337 @@
++#ifndef _qetest_util_h_
++#define _qetest_util_h_
++
++#include <fstream>
++#include <vector>
++#include <cstdlib>
++#include <cstdio>
++#include <cstring>
++#include <unordered_map>
++
++#include "src/include/qe.h"
++#include "general_test_utils.h"
++#include "test/utils/rm_test_util.h"
++
++namespace PeterDBTesting {
++
++    class QE_Test : public ::testing::Test {
++    protected:
++        std::unordered_map<std::string, std::vector<PeterDB::Attribute >> attrsMap{
++                {"left",         {
++                                         {"A", PeterDB::TypeInt,     4},
++                                         {"B", PeterDB::TypeInt,     4},
++                                         {"C", PeterDB::TypeReal, 4},
++                                 }
++                },
++                {"right",        {
++                                         {"B", PeterDB::TypeInt,     4},
++                                         {"C", PeterDB::TypeReal,    4},
++                                         {"D", PeterDB::TypeInt,  4}
++                                 }
++                },
++                {"leftvarchar",  {
++                                         {"A", PeterDB::TypeInt,     4},
++                                         {"B", PeterDB::TypeVarChar, 30}
++                                 }
++                },
++                {"rightvarchar", {
++
++                                         {"B", PeterDB::TypeVarChar, 30},
++                                         {"C", PeterDB::TypeReal,    4}
++                                 }
++                },
++                {"group",        {
++                                         {"A", PeterDB::TypeInt,     4},
++                                         {"B", PeterDB::TypeInt,     4},
++                                         {"C", PeterDB::TypeReal, 4},
++                                 }
++                }
++        };
++
++        std::vector<std::string> tableNames;
++
++        PeterDB::FileHandle fileHandle;
++        size_t bufSize = 100;
++        void *inBuffer = nullptr, *outBuffer = nullptr;
++        unsigned char *nullsIndicator = nullptr;
++        unsigned char *nullsIndicatorWithNull = nullptr;
++        bool destroyFile = true;
++        PeterDB::RID rid;
++        std::vector<PeterDB::Attribute> attrs;
++
++    public:
++
++        PeterDB::RelationManager &rm = PeterDB::RelationManager::instance();
++        PeterDB::IndexManager &ix = PeterDB::IndexManager::instance();
++
++        void SetUp() override {
++            // Remove any leftover index file.
++            for (const std::string &indexFileName : glob(".idx")) {
++                remove(indexFileName.c_str());
++            }
++
++            // Try to delete the System Catalog.
++            // If this is the first time, it will generate an error. It's OK and we will ignore that.
++            rm.deleteCatalog();
++
++            // Create Catalog
++            ASSERT_EQ(rm.createCatalog(), success) << "Creating the Catalog should succeed.";
++
++        }
++
++        void TearDown() override {
++
++            // Destruct the buffers
++            free(inBuffer);
++            free(outBuffer);
++            free(nullsIndicator);
++            free(nullsIndicatorWithNull);
++
++            if (destroyFile) {
++                for (const std::string &tableName: tableNames) {
++                    // Destroy the file
++                    ASSERT_EQ(rm.deleteTable(tableName), success) << "Destroying the file should succeed.";
++                }
++
++                ASSERT_EQ(glob(".idx").size(), 0) << "There should be no index file now.";
++
++                // Delete Catalog
++                ASSERT_EQ(rm.deleteCatalog(), success) << "Deleting the Catalog should succeed.";
++            }
++
++        }
++
++        void createAndPopulateTable(const std::string &tableName, std::vector<std::string> indexAttrs,
++                                    const unsigned &tupleCount) {
++            // Create a table
++            ASSERT_EQ(rm.createTable(tableName, attrsMap[tableName]), success)
++                                        << "Create table " << tableName << " should succeed.";
++
++            tableNames.emplace_back(tableName);
++
++            size_t currentIndexCnt = glob(".idx").size();
++
++            if (!indexAttrs.empty())
++                // Create an index before inserting tuples.
++                ASSERT_EQ(rm.createIndex(tableName, indexAttrs[0]), success)
++                                            << "RelationManager.createIndex() should succeed.";
++
++            populateTable(tableName, tupleCount);
++
++            for (auto attrName = indexAttrs.begin() + 1; attrName < indexAttrs.end(); attrName++) {
++
++                // Create index after inserting tuples - should reflect the currently existing tuples.
++                ASSERT_EQ(rm.createIndex(tableName, *attrName), success)
++                                            << "RelationManager.createIndex() should succeed.";
++            }
++            ASSERT_EQ(glob(".idx").size() - currentIndexCnt, indexAttrs.size())
++                                        << "There should some new index files now.";
++
++        }
++
++        // Prepare the tuple to left table in the format conforming to Insert/Update/ReadTuple and readAttribute
++        void prepareLeftTuple(unsigned char *nullAttributesIndicator, const unsigned &seed, void *buf) {
++
++            // Prepare the tuple data for insertion
++            unsigned a = seed % 203;
++            unsigned b = (seed + 10) % 197;
++            float c = (float) (seed % 167) + 50.5f;
++
++            int offset = 0;
++
++            // Null-indicators
++            bool nullBit;
++            int nullAttributesIndicatorActualSize = getActualByteForNullsIndicator(attrsMap["left"].size());
++
++            // Null-indicator for the fields
++            memcpy((char *) buf + offset, nullAttributesIndicator, nullAttributesIndicatorActualSize);
++            offset += nullAttributesIndicatorActualSize;
++
++            // Beginning of the actual data
++            // Note that the left-most bit represents the first field. Thus, the offset is 7 from right, not 0.
++            // e.g., if a tuple consists of four attributes and they are all nulls, then the bit representation will be: [11110000]
++
++            // Is the A field not-NULL?
++            nullBit = nullAttributesIndicator[0] & ((unsigned) 1 << (unsigned) 7);
++
++            if (!nullBit) {
++                memcpy((char *) buf + offset, &a, sizeof(int));
++                offset += sizeof(int);
++            }
++
++            // Is the B field not-NULL?
++            nullBit = nullAttributesIndicator[0] & ((unsigned) 1 << (unsigned) 6);
++
++            if (!nullBit) {
++                memcpy((char *) buf + offset, &b, sizeof(int));
++                offset += sizeof(int);
++            }
++
++            // Is the C field not-NULL?
++            nullBit = nullAttributesIndicator[0] & ((unsigned) 1 << (unsigned) 5);
++
++            if (!nullBit) {
++                memcpy((char *) buf + offset, &c, sizeof(float));
++            }
++        }
++
++        // Prepare the tuple to right table in the format conforming to Insert/Update/ReadTuple, readAttribute
++        void prepareRightTuple(unsigned char *nullAttributesIndicator, const unsigned &seed, void *buf) {
++            int offset = 0;
++            unsigned b = seed % 251 + 20;
++            float c = (float) (seed % 261) + 25.5f;
++            unsigned d = seed % 179;
++            // Null-indicators
++            bool nullBit;
++            int nullAttributesIndicatorActualSize = getActualByteForNullsIndicator(attrsMap["right"].size());
++
++            // Null-indicator for the fields
++            memcpy((char *) buf + offset, nullAttributesIndicator, nullAttributesIndicatorActualSize);
++            offset += nullAttributesIndicatorActualSize;
++
++            // Beginning of the actual data
++            // Note that the left-most bit represents the first field. Thus, the offset is 7 from right, not 0.
++            // e.g., if a tuple consists of four attributes and they are all nulls, then the bit representation will be: [11110000]
++
++            // Is the B field not-NULL?
++            nullBit = nullAttributesIndicator[0] & (1u << 7u);
++
++            if (!nullBit) {
++                memcpy((char *) buf + offset, &b, sizeof(int));
++                offset += sizeof(int);
++            }
++
++            // Is the C field not-NULL?
++            nullBit = nullAttributesIndicator[0] & (1u << 6u);
++
++            if (!nullBit) {
++                memcpy((char *) buf + offset, &c, sizeof(float));
++                offset += sizeof(float);
++            }
++
++
++            // Is the D field not-NULL?
++            nullBit = nullAttributesIndicator[0] & (1u << 5u);
++
++            if (!nullBit) {
++                memcpy((char *) buf + offset, &d, sizeof(unsigned));
++            }
++
++        }
++
++        void prepareLeftVarCharTuple(unsigned char *nullAttributesIndicator, const unsigned &seed, void *buf) {
++            unsigned a = seed + 20;
++
++            unsigned length = (seed % 26) + 1;
++            std::string b = std::string(length, '\0');
++            for (int j = 0; j < length; j++) {
++                b[j] = 96 + length;
++            }
++
++            int offset = 0;
++
++            // Null-indicators
++            bool nullBit;
++            int nullAttributesIndicatorActualSize = getActualByteForNullsIndicator(attrsMap["leftvarchar"].size());
++
++            // Null-indicator for the fields
++            memcpy((char *) buf + offset, nullAttributesIndicator, nullAttributesIndicatorActualSize);
++            offset += nullAttributesIndicatorActualSize;
++
++            // Beginning of the actual data
++            // Note that the left-most bit represents the first field. Thus, the offset is 7 from right, not 0.
++            // e.g., if a tuple consists of four attributes and they are all nulls, then the bit representation will be: [11110000]
++
++            // Is the A field not-NULL?
++            nullBit = nullAttributesIndicator[0] & (1u << 7u);
++            if (!nullBit) {
++                memcpy((char *) buf + offset, &a, sizeof(unsigned));
++                offset += sizeof(unsigned);
++            }
++
++            // Is the B field not-NULL?
++            nullBit = nullAttributesIndicator[0] & (1u << 6u);
++            if (!nullBit) {
++                memcpy((char *) buf + offset, &length, sizeof(unsigned));
++                offset += sizeof(unsigned);
++                memcpy((char *) buf + offset, b.c_str(), length);
++            }
++
++        }
++
++        void prepareGroupTable(unsigned char *nullAttributesIndicator, const unsigned &seed, void *buf) {
++            // Prepare the tuple data for insertion
++            unsigned a = seed % 5 + 1;
++            unsigned b = seed % 5 + 1;
++            auto c = (float) seed + 50.3;
++
++            int offset = 0;
++
++            // Null-indicators
++            bool nullBit;
++            int nullAttributesIndicatorActualSize = getActualByteForNullsIndicator(attrsMap["left"].size());
++
++            // Null-indicator for the fields
++            memcpy((char *) buf + offset, nullAttributesIndicator, nullAttributesIndicatorActualSize);
++            offset += nullAttributesIndicatorActualSize;
++
++            // Beginning of the actual data
++            // Note that the left-most bit represents the first field. Thus, the offset is 7 from right, not 0.
++            // e.g., if a tuple consists of four attributes and they are all nulls, then the bit representation will be: [11110000]
++
++            // Is the A field not-NULL?
++            nullBit = nullAttributesIndicator[0] & ((unsigned) 1 << (unsigned) 7);
++
++            if (!nullBit) {
++                memcpy((char *) buf + offset, &a, sizeof(int));
++                offset += sizeof(int);
++            }
++
++            // Is the B field not-NULL?
++            nullBit = nullAttributesIndicator[0] & ((unsigned) 1 << (unsigned) 6);
++
++            if (!nullBit) {
++                memcpy((char *) buf + offset, &b, sizeof(int));
++                offset += sizeof(int);
++            }
++
++            // Is the C field not-NULL?
++            nullBit = nullAttributesIndicator[0] & ((unsigned) 1 << (unsigned) 5);
++
++            if (!nullBit) {
++                memcpy((char *) buf + offset, &c, sizeof(float));
++            }
++
++        }
++
++        void populateTable(const std::string &tableName, const unsigned &tupleCount) {
++
++            // GetAttributes
++            ASSERT_EQ(rm.getAttributes(tableName, attrs), success)
++                                        << "RelationManager::getAttributes() should succeed.";
++
++            // Initialize a NULL field indicator
++            nullsIndicator = initializeNullFieldsIndicator(attrs);
++
++            for (int i = 0; i < tupleCount; ++i) {
++                memset(inBuffer, 0, bufSize);
++
++                // Insert tuples.
++                if (tableName == "left")prepareLeftTuple(nullsIndicator, i, inBuffer);
++                else if (tableName == "right")
++                    prepareRightTuple(nullsIndicator, i, inBuffer);
++                else if (tableName == "leftvarchar")
++                    prepareLeftVarCharTuple(nullsIndicator, i, inBuffer);
++                else if (tableName == "group")
++                    prepareGroupTable(nullsIndicator, i, inBuffer);
++
++                ASSERT_EQ(rm.insertTuple(tableName, inBuffer, rid), success)
++                                            << "relationManager.insertTuple() should succeed.";
++            }
++        }
++    };
++
++}; // PeterDBTesting
++#endif
++
++
+-- 
+2.28.0
+
